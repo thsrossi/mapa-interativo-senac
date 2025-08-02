@@ -8,9 +8,11 @@ import { Badge } from "@/components/ui/badge"
 import Topbar from "./components/Topbar/Topbar"
 import { MapMarker, Category, TransformComponentRef } from "@/types"
 import Mapa from './assets/PisoTerreo.jpg'
+import L1 from './assets/PisoSuperior.jpg'
+
 
 // Dados de exemplo dos marcadores
-const initialMarkers: MapMarker[] = [
+const markersTerreo: MapMarker[] = [
   {
     id: "1",
     name: "Entrada Principal",
@@ -73,6 +75,70 @@ const initialMarkers: MapMarker[] = [
   },
 ]
 
+const markersSuperior: MapMarker[] = [
+  {
+    id: "1",
+    name: "Biblioteca",
+    description: "Espaço silencioso com acervo de livros e mesas para estudo individual",
+    x: 20,
+    y: 25,
+    category: "Estudo",
+    color: "bg-indigo-500",
+    visible: true,
+  },
+  {
+    id: "2",
+    name: "Sala de Música",
+    description: "Ambiente acústico com instrumentos disponíveis para prática musical",
+    x: 85,
+    y: 30,
+    category: "Artes",
+    color: "bg-pink-500",
+    visible: true,
+  },
+  {
+    id: "3",
+    name: "Laboratório de Ciências",
+    description: "Laboratório equipado para aulas práticas de química e biologia",
+    x: 75,
+    y: 60,
+    category: "Laboratório",
+    color: "bg-teal-500",
+    visible: true,
+  },
+  {
+    id: "4",
+    name: "Banheiros",
+    description: "Sanitários masculino e feminino do segundo andar",
+    x: 30,
+    y: 40,
+    category: "Sanitário",
+    color: "bg-gray-500",
+    visible: true,
+  },
+  {
+    id: "5",
+    name: "Refeitório",
+    description: "Espaço para refeições com mesas comunitárias",
+    x: 80,
+    y: 75,
+    category: "Alimentação",
+    color: "bg-orange-500",
+    visible: true,
+  },
+  {
+    id: "6",
+    name: "Espaço Zen",
+    description: "Ambiente para relaxamento e meditação",
+    x: 60,
+    y: 50,
+    category: "Bem-estar",
+    color: "bg-lime-500",
+    visible: true,
+  },
+]
+
+
 // Categorias para filtros
 const categories = [
   { name: "Acesso", color: "bg-blue-500" },
@@ -85,15 +151,16 @@ const categories = [
 
 
 export default function InteractiveMap() {
-  const [markers, setMarkers] = useState<MapMarker[]>(initialMarkers)
+  const [markers, setMarkers] = useState<MapMarker[]>(markersTerreo)
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null)
   const [hoveredMarker, setHoveredMarker] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
   const transformComponentRef = useRef<ReactZoomPanPinchContentRef>({} as ReactZoomPanPinchContentRef)
+  const [andarSelecionado, setAndarSelecionado] = useState("terreo")
 
-  useEffect(() => {
-    setIsMobile(typeof window !== "undefined" && window.outerWidth < 768)
-  }, [])
+  const imagemMapa = andarSelecionado === "superior" ? L1 : Mapa
+
+
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -103,12 +170,19 @@ export default function InteractiveMap() {
     }
   }
 
+  useEffect(() => {
+    if (andarSelecionado === "terreo") {
+      setMarkers(markersTerreo)
+    } else {
+      setMarkers(markersSuperior)
+    }
+  }, [andarSelecionado])
 
   useEffect(() => {
     setIsMobile(typeof window !== "undefined" && window.outerWidth < 768)
   }, [])
 
-  if (isMobile === null) return null 
+  if (isMobile === null) return null
 
   return (
     <TooltipProvider>
@@ -122,22 +196,25 @@ export default function InteractiveMap() {
           hoveredMarker={hoveredMarker}
           setHoveredMarker={setHoveredMarker}
           setMarkers={setMarkers}
-          sidebarOpen={sidebarOpen} // Adicione esta prop
-          setSidebarOpen={setSidebarOpen} // E esta
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          andarSelecionado={andarSelecionado}
+          setAndarSelecionado={setAndarSelecionado}
         />
 
-        <div className="flex-1 relative max-w-screen z-20" style={{overflow: "hidden"}}>
+        <div className="flex-1 relative max-w-screen z-20" style={{ overflow: "hidden" }}>
           <TransformWrapper
             ref={transformComponentRef}
-            initialScale={isMobile ? 0.7 :1}
+            initialScale={isMobile ? 0.7 : 1}
             minScale={0.5}
             maxScale={4}
             centerOnInit={false}
-            
+
+
             wheel={{ step: 0.1 }}
             pinch={{ step: .1 }}
             panning={{
-              disabled: isMobile && sidebarOpen, // Desabilita panning quando sidebar está aberta
+              disabled: (isMobile && sidebarOpen), // Desabilita panning quando sidebar está aberta
 
             }}
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
@@ -146,13 +223,13 @@ export default function InteractiveMap() {
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
             <TransformComponent
-              
+
               wrapperClass="max-w-screen max-h-screen"
               contentClass="w-full h-screen flex items-center justify-center"
             >
-              <div className="relative inline-block z-20">
+              <div className="relative inline-block z-20 py-16">
                 <img
-                  src={Mapa.src}
+                  src={imagemMapa.src}
                   alt="Planta Baixa"
                   className="max-w-none w-[1200px] h-[800px] object-contain"
                   draggable={false}
@@ -181,14 +258,18 @@ export default function InteractiveMap() {
                         onMouseLeave={() => setHoveredMarker(null)}
                       >
                         <div className={`relative`}>
-                          <div
-                            className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
-                          >
-                            <MapPin className="w-3 h-3 text-white" />
+                          <div className="flex flex-col items-center">
+
+                            <div
+                              className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
+                            >
+                              <MapPin className="w-3 h-3 text-white" />
+                            </div>
+                            <Badge > {marker.name} </Badge>
                           </div>
-                          {/* {marker.name} */}
+
                           {(selectedMarker === marker.id || hoveredMarker === marker.id) && (
-                            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-30 border">
+                            <div className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-30 border">
                               <h4 className="font-medium text-gray-900 text-sm">{marker.name}</h4>
                               <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
                               <Badge variant="outline" className="text-xs mt-2">

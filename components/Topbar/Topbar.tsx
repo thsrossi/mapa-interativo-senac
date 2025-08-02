@@ -18,8 +18,10 @@ interface TopBarProps {
     hoveredMarker: string | null
     setHoveredMarker: (id: string | null) => void
     setMarkers: (markers: MapMarker[]) => void
-    sidebarOpen: boolean // Adicione
-    setSidebarOpen: (open: boolean) => void // Adicione
+    sidebarOpen: boolean // 
+    setSidebarOpen: (open: boolean) => void // 
+    andarSelecionado: string
+    setAndarSelecionado: (andar: string) => void
 }
 
 export default function Topbar({
@@ -30,9 +32,10 @@ export default function Topbar({
     setSelectedMarker,
     setMarkers,
     setSidebarOpen,
-    sidebarOpen
+    sidebarOpen,
+    andarSelecionado,
+    setAndarSelecionado
 }: TopBarProps) {
-    const [andarSelecionado, setAndarSelecionado] = useState("terreo")
 
     const centerOnMarker = (marker: MapMarker) => {
         if (transformComponentRef.current) {
