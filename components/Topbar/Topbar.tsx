@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ScrollArea } from "../ui/scroll-area"
 import { Card, CardContent } from "../ui/card"
 import { Button } from "../ui/button"
@@ -8,15 +8,18 @@ import { RotateCcw, ZoomIn, ZoomOut } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { Switch } from "../ui/switch"
 import { MapMarker, Category, TransformComponentRef } from "@/types"
+import { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
+import { ca } from "date-fns/locale"
+import { Input } from "../ui/input"
 
 interface TopBarProps {
     markers: MapMarker[]
-    categories: Category[]
-    transformComponentRef: React.RefObject<TransformComponentRef>
+    transformComponentRef: React.RefObject<ReactZoomPanPinchContentRef>
     selectedMarker: string | null
     setSelectedMarker: (id: string | null) => void
     hoveredMarker: string | null
     setHoveredMarker: (id: string | null) => void
+    categoriasUnicas: Category[]
     setMarkers: (markers: MapMarker[]) => void
     sidebarOpen: boolean // 
     setSidebarOpen: (open: boolean) => void // 
@@ -26,32 +29,52 @@ interface TopBarProps {
 
 export default function Topbar({
     markers,
-    categories,
     transformComponentRef,
     selectedMarker,
     setSelectedMarker,
     setMarkers,
     setSidebarOpen,
+    categoriasUnicas,
     sidebarOpen,
     andarSelecionado,
     setAndarSelecionado
 }: TopBarProps) {
 
+
+    console.log(categoriasUnicas)
+
+    const [categoriasVisiveis, setCategoriasVisiveis] = useState<string[]>(categoriasUnicas.map((c) => c.name));
+
+    const toggleCategoria = (categoria: string) => {
+        setCategoriasVisiveis((prev) =>
+            prev.includes(categoria)
+                ? prev.filter((c) => c !== categoria)
+                : [...prev, categoria]
+        );
+    };
+
+    const [filtro, setFiltro] = useState("")
+
+    const markersFiltrados = useMemo(() => {
+        return markers.filter((marker) =>
+            `${marker.name} ${marker.description} ${marker.category}`
+                .toLowerCase()
+                .includes(filtro.toLowerCase())
+        )
+    }, [filtro, markers])
+
     const centerOnMarker = (marker: MapMarker) => {
-        if (transformComponentRef.current) {
-            setSelectedMarker(marker.id)
-            setTimeout(() => {
-                const markerElement = document.getElementById(`marker-${marker.id}`)
-                if (markerElement) {
-                    markerElement.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                        inline: "center",
-                    })
-                }
-            }, 100)
+        if (!transformComponentRef.current) return;
+        setSidebarOpen(false)
+        setSelectedMarker(marker.id);
+
+        const { zoomToElement } = transformComponentRef.current;
+
+        const markerElement = document.getElementById(`marker-${marker.id}`);
+        if (markerElement && zoomToElement) {
+            zoomToElement(markerElement, 1.5, 300); // Zoom 1.5x e animação de 300ms
         }
-    }
+    };
 
     const toggleMarkerVisibility = (markerId: string) => {
         setMarkers(
@@ -66,6 +89,22 @@ export default function Topbar({
     const handleSidebarTouchMove = (e: React.TouchEvent) => {
         e.stopPropagation()
     }
+
+
+
+    useEffect(() => {
+        setCategoriasVisiveis(categoriasUnicas.map((c) => c.name))
+        setFiltro("")
+    }, [categoriasUnicas])
+
+    useEffect(() => {
+        setMarkers(
+            markers.map((marker) => ({
+                ...marker,
+                visible: categoriasVisiveis.includes(marker.category),
+            }))
+        );
+    }, [categoriasVisiveis]);
 
     return (
         <div className="max-w-screen" onTouchStart={(e) => e.stopPropagation()}
@@ -89,7 +128,7 @@ export default function Topbar({
                 </select>
             </div>
             {/* Sidebar */}
-            <div onTouchMove={handleSidebarTouchMove} className={`fixed inset-0 z-40 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+            <div onTouchMove={handleSidebarTouchMove} className={`fixed inset-0 z-40 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:max-h-screen'} 
                       md:relative md:translate-x-0 transition-transform duration-300 ease-in-out`} style={{ overflowY: 'scroll' }}>
 
                 <div onTouchMove={handleSidebarTouchMove} onTouchStart={(e) => e.stopPropagation()}
@@ -100,7 +139,7 @@ export default function Topbar({
                     </div>
 
                     {/* Controles de Zoom */}
-                    <div className="p-4 border-b">
+                    <div className="p-4 hidden md:block border-b">
                         <h3 className="text-sm font-medium text-gray-900 mb-3">Controles</h3>
                         <div className="flex gap-2">
                             <Button variant="outline" size="sm" onClick={() => transformComponentRef.current?.zoomIn()}>
@@ -119,19 +158,16 @@ export default function Topbar({
                     <div className="p-4 border-b">
                         <h3 className="text-sm font-medium text-gray-900 mb-3">Categorias</h3>
                         <div className="space-y-2">
-                            {categories.map((category) => {
-                                const categoryMarkers = markers.filter((m) => m.category === category.name)
-                                const visibleCount = categoryMarkers.filter((m) => m.visible).length
+                            {categoriasUnicas.map((category) => {
 
                                 return (
-                                    <div key={category.name} className="flex items-center justify-between">
+                                    <div key={category.name} className="flex items-center justify-between " onClick={() => toggleCategoria(category.name)}>
                                         <div className="flex items-center gap-2">
+
                                             <div className={`w-3 h-3 rounded-full ${category.color}`} />
                                             <span className="text-sm text-gray-700">{category.name}</span>
-                                            <Badge variant="secondary" className="text-xs">
-                                                {visibleCount}/{categoryMarkers.length}
-                                            </Badge>
                                         </div>
+                                        <Switch checked={categoriasVisiveis.includes(category.name)} onClick={(e) => e.preventDefault()} onCheckedChange={() => toggleCategoria(category.name)} />
                                     </div>
                                 )
                             })}
@@ -143,10 +179,17 @@ export default function Topbar({
                         <div className="p-4 border-b">
                             <h3 className="text-sm font-medium text-gray-900">Pontos de Interesse ({visibleMarkers.length})</h3>
                         </div>
+                        <div className="p-4">
+                            <Input
+                                placeholder="Buscar ponto de interesse..."
+                                value={filtro}
+                                onChange={(e) => setFiltro(e.target.value)}
+                            />
+                        </div>
 
-                        <ScrollArea className="flex-1">
+                        <div className="flex-1">
                             <div className="p-4 space-y-2">
-                                {markers.map((marker) => (
+                                {markersFiltrados.map((marker) => (
                                     <Card
                                         key={marker.id}
                                         className={`cursor-pointer transition-all hover:shadow-md ${selectedMarker === marker.id ? "ring-2 ring-blue-500" : ""
@@ -165,17 +208,17 @@ export default function Topbar({
                                                         {marker.category}
                                                     </Badge>
                                                 </div>
-                                                <Switch
+                                                {/* <Switch
                                                     checked={marker.visible}
                                                     onCheckedChange={() => toggleMarkerVisibility(marker.id)}
                                                     className="ml-2"
-                                                />
+                                                /> */}
                                             </div>
                                         </CardContent>
                                     </Card>
                                 ))}
                             </div>
-                        </ScrollArea>
+                        </div>
                     </div>
                 </div>
                 {sidebarOpen && (

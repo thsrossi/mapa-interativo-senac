@@ -139,17 +139,6 @@ const markersSuperior: MapMarker[] = [
 ]
 
 
-// Categorias para filtros
-const categories = [
-  { name: "Acesso", color: "bg-blue-500" },
-  { name: "Aulas Culinária", color: "bg-green-500" },
-  { name: "Trabalho", color: "bg-purple-500" },
-  { name: "Descanso", color: "bg-orange-500" },
-  { name: "Sanitário", color: "bg-gray-500" },
-  { name: "Técnica", color: "bg-red-500" },
-]
-
-
 export default function InteractiveMap() {
   const [markers, setMarkers] = useState<MapMarker[]>(markersTerreo)
   const [selectedMarker, setSelectedMarker] = useState<string | null>(null)
@@ -160,6 +149,9 @@ export default function InteractiveMap() {
 
   const imagemMapa = andarSelecionado === "superior" ? L1 : Mapa
 
+  const [categoriasUnicas, setCategoriasUnicas] = useState<Category[]>({} as Category[])
+
+  // useMemo(() => { return Array.from(new Set(markers.map((m) => { return ({ name: m.category, color: m.color }) }))) }, [andarSelecionado])
 
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -173,14 +165,35 @@ export default function InteractiveMap() {
   useEffect(() => {
     if (andarSelecionado === "terreo") {
       setMarkers(markersTerreo)
+      setCategoriasUnicas(Array.from(new Set(markersTerreo.map((m) => { return ({ name: m.category, color: m.color }) }))))
     } else {
       setMarkers(markersSuperior)
+      setCategoriasUnicas(Array.from(new Set(markersSuperior.map((m) => { return ({ name: m.category, color: m.color }) }))))
+
     }
+
+    // Resetar o zoom e pan
+    setTimeout(() => {
+      transformComponentRef.current?.resetTransform()
+    }, 0)
   }, [andarSelecionado])
 
   useEffect(() => {
     setIsMobile(typeof window !== "undefined" && window.outerWidth < 768)
   }, [])
+
+  const centerOnMarker = (marker: MapMarker) => {
+    if (!transformComponentRef.current) return;
+
+    setSelectedMarker(marker.id);
+
+    const { zoomToElement } = transformComponentRef.current;
+
+    const markerElement = document.getElementById(`marker-${marker.id}`);
+    if (markerElement && zoomToElement) {
+      zoomToElement(markerElement, 1.5, 300); // Zoom 1.5x e animação de 300ms
+    }
+  };
 
   if (isMobile === null) return null
 
@@ -189,10 +202,10 @@ export default function InteractiveMap() {
       <div className="flex h-screen max-w-screen bg-gray-50">
         <Topbar
           markers={markers}
-          categories={categories}
           transformComponentRef={transformComponentRef}
           selectedMarker={selectedMarker}
           setSelectedMarker={setSelectedMarker}
+          categoriasUnicas={categoriasUnicas}
           hoveredMarker={hoveredMarker}
           setHoveredMarker={setHoveredMarker}
           setMarkers={setMarkers}
@@ -244,7 +257,7 @@ export default function InteractiveMap() {
 
                 {markers.filter(m => m.visible).map((marker) => (
                   <Tooltip key={marker.id}>
-                    <TooltipTrigger asChild>
+                    <TooltipTrigger asChild >
                       <div
                         id={`marker-${marker.id}`}
                         className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all hover:scale-110 ${selectedMarker === marker.id ? "scale-125 z-20" : "z-10"
@@ -253,9 +266,10 @@ export default function InteractiveMap() {
                           left: `${marker.x}%`,
                           top: `${marker.y}%`,
                         }}
-                        onClick={() => setSelectedMarker(marker.id)}
+                        onClick={() => { setSelectedMarker(marker.id); centerOnMarker(marker) }}
                         onMouseEnter={() => setHoveredMarker(marker.id)}
-                        onMouseLeave={() => setHoveredMarker(null)}
+                        onMouseLeave={() => { setHoveredMarker(null); setSelectedMarker(null) }}
+
                       >
                         <div className={`relative`}>
                           <div className="flex flex-col items-center">
