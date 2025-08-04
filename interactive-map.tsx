@@ -2,23 +2,23 @@
 
 import { useState, useRef, useEffect } from "react"
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
-import { MapPin } from "lucide-react"
+import { LockKeyhole, MapPin } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import Topbar from "./components/Topbar/Topbar"
 import { MapMarker, Category, TransformComponentRef } from "@/types"
 import Mapa from './assets/PisoTerreo.jpg'
-import L1 from './assets/PisoSuperior.jpg'
+import L1 from './assets/Mezanino.jpg'
 
 
 // Dados de exemplo dos marcadores
-const markersTerreo: MapMarker[] = [
+const markersTerreo = [
   {
     id: "1",
     name: "Entrada Principal",
-    description: "Acesso principal do edifício com recepção",
-    x: 15,
-    y: 80,
+    description: "Acesso principal do edifício",
+    x: 5,
+    y: 35,
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
@@ -26,30 +26,30 @@ const markersTerreo: MapMarker[] = [
   {
     id: "2",
     name: "Confeitaria",
-    description: "Um espaço equipado com bancadas, fornos e utensílios básicos para aulas práticas de culinária",
+    description: "Um espaço equipado com bancadas, fornos e utensílios para aulas práticas de gastronomia",
     x: 14.17,
     y: 26.38,
-    category: "Aulas Culinária",
+    category: "Aulas Gastronomia",
     color: "bg-green-500",
     visible: true,
   },
   {
     id: "3",
-    name: "Área de Trabalho",
-    description: "Espaço colaborativo com 20 estações",
-    x: 65,
-    y: 40,
-    category: "Trabalho",
+    name: "Capela",
+    description: "?",
+    x: 25.75,
+    y: 23.75,
+    category: "Capela",
     color: "bg-purple-500",
     visible: true,
   },
   {
     id: "4",
-    name: "Copa/Cozinha",
-    description: "Área de descanso e alimentação",
-    x: 80,
-    y: 70,
-    category: "Descanso",
+    name: "Vestiários",
+    description: "Vestiários mascunilno e feminino",
+    x: 33,
+    y: 25,
+    category: "Vestiário",
     color: "bg-orange-500",
     visible: true,
   },
@@ -57,23 +57,234 @@ const markersTerreo: MapMarker[] = [
     id: "5",
     name: "Banheiros",
     description: "Sanitários masculino e feminino",
-    x: 25,
-    y: 60,
+    x: 51,
+    y: 59,
     category: "Sanitário",
     color: "bg-gray-500",
     visible: true,
   },
   {
     id: "6",
-    name: "Sala do Servidor",
-    description: "Equipamentos de TI e telecomunicações",
-    x: 85,
-    y: 15,
-    category: "Técnica",
+    name: "Banheiro Feminino",
+    description: "Sanitário Feminino",
+    x: 39,
+    y: 29,
+    category: "Sanitário",
+    color: "bg-gray-500",
+    visible: true,
+  },
+  {
+    id: "7",
+    name: "",
+    description: "A partir deste ponto: acesso restrito, somente funcionários.",
+    x: 42,
+    y: 33,
+    category: "Restrito",
     color: "bg-red-500",
     visible: true,
   },
+  {
+    id: "8",
+    name: "Recepção/Portaria",
+    description: "Recepção",
+    x: 15,
+    y: 37,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "9",
+    name: "Escada Auditório",
+    description: "Escadaria que dá acesso ao auditório",
+    x: 21.67,
+    y: 44,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "10",
+    name: "Elevador",
+    description: "?",
+    x: 49.17,
+    y: 42.25,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "11",
+    name: "Café do Paço",
+    description: "?",
+    x: 70.49,
+    y: 46.25,
+    category: "Alimentação",
+    color: "bg-yellow-500",
+    visible: true,
+  },
+  {
+    id: "12",
+    name: "Escada Mezanino",
+    description: "Escada que dá acesso ao mezanino",
+    x: 6.58,
+    y: 49.75,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "13",
+    name: "Central de Matrículas",
+    description: "?",
+    x: 14.33,
+    y: 56.5,
+    category: "Secretaria",
+    color: "bg-orange-900",
+    visible: true,
+  },
+  {
+    id: "14",
+    name: "Biblioteca",
+    description: "?",
+    x: 30.58,
+    y: 63,
+    category: "Biblioteca",
+    color: "bg-indigo-500",
+    visible: true,
+  },
+  {
+    id: "15",
+    name: "Secretaria Escolar",
+    description: "Acesso restrito, somente atendimentos telefonicos",
+    x: 15.92,
+    y: 66.5,
+    category: "Restrito",
+    color: "bg-red-500",
+    visible: true,
+  },
+  {
+    id: "16",
+    name: "Escada",
+    description: "Escada que dá acesso à coordenação gastronomia e café bar",
+    x: 21.75,
+    y: 63.63,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "17",
+    name: "",
+    description: "A partir deste ponto: acesso restrito, somente funcionários.",
+    x: 56.6,
+    y: 64.5,
+    category: "Restrito",
+    color: "bg-red-500",
+    visible: true,
+  },
+  {
+    id: "18",
+    name: "Escada Rouparia",
+    description: "Escada que dá acesso à rouparia",
+    x: 60,
+    y: 69,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "19",
+    name: "",
+    description: "A partir deste ponto: acesso restrito, somente funcionários.",
+    x: 66.68,
+    y: 77.5,
+    category: "Restrito",
+    color: "bg-red-500",
+    visible: true,
+  },
+  {
+    id: "20",
+    name: "Laboratórios Informática",
+    description: "Um espaço equipado com computadores, destinado à aulas de informática - Salas 1, 2 e 3",
+    x: 19.75,
+    y: 71.3,
+    category: "Aulas Informática",
+    color: "bg-green-900",
+    visible: true,
+  },
+  {
+    id: "21",
+    name: "Sala 4",
+    description: "Ambiente Pedagógico convencional, destinado à aulas teóricas gerais",
+    x: 30.42,
+    y: 71.3,
+    category: "Ambiente Pedagógico",
+    color: "bg-gray-900",
+    visible: true,
+  },
+  {
+    id: "22",
+    name: "Sala 5",
+    description: "Ambiente Pedagógico convencional, destinado à aulas teóricas gerais",
+    x: 40.33,
+    y: 71.3,
+    category: "Ambiente Pedagógico",
+    color: "bg-gray-900",
+    visible: true,
+  },
+  {
+    id: "23",
+    name: "Laboratório Informática",
+    description: "Um espaço equipado com computadores, destinado à aulas de informática - Sala 6",
+    x: 50.01,
+    y: 77.38,
+    category: "Aulas Informática",
+    color: "bg-green-900",
+    visible: true,
+  },
+  {
+    id: "24",
+    name: "Laboratório Informática",
+    description: "Um espaço equipado com computadores, destinado à aulas de informática - Salas 7",
+    x: 60.35,
+    y: 74,
+    category: "Aulas Informática",
+    color: "bg-green-900",
+    visible: true,
+  },
+  {
+    id: "25",
+    name: "Mesas Circulação",
+    description: "Um espaço com mesas livres, ideais para descanso, alimentação, entre outros",
+    x: 37.55,
+    y: 66,
+    category: "Descanso",
+    color: "bg-green-200",
+    visible: true,
+  },
+  {
+    id: "26",
+    name: "Elevador",
+    description: "Elevador de acesso ao primeiro e demais andares",
+    x: 38,
+    y: 38,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "27",
+    name: "Rampa",
+    description: "Rampa de acesso ao primeiro e demais andares",
+    x: 26.63,
+    y: 35,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
 ]
+
 
 const markersSuperior: MapMarker[] = [
   {
@@ -165,7 +376,12 @@ export default function InteractiveMap() {
   useEffect(() => {
     if (andarSelecionado === "terreo") {
       setMarkers(markersTerreo)
-      setCategoriasUnicas(Array.from(new Set(markersTerreo.map((m) => { return ({ name: m.category, color: m.color }) }))))
+      const arrayAuxiliar = Array.from(
+        new Map(
+          markersTerreo.map((m) => [`${m.category}-${m.color}`, { name: m.category, color: m.color }])
+        ).values()
+      )
+      setCategoriasUnicas(arrayAuxiliar)
     } else {
       setMarkers(markersSuperior)
       setCategoriasUnicas(Array.from(new Set(markersSuperior.map((m) => { return ({ name: m.category, color: m.color }) }))))
@@ -215,7 +431,20 @@ export default function InteractiveMap() {
           setAndarSelecionado={setAndarSelecionado}
         />
 
-        <div className="flex-1 relative max-w-screen z-20" style={{ overflow: "hidden" }}>
+        <div className="flex-1 relative max-w-screen z-20 mt-5" style={{ overflow: "auto" }}>
+          {/* <img
+            src={Mapa.src}
+            alt="Planta Baixa"
+            className="max-w-none w-[1200px] h-[800px] object-contain"
+            draggable={false}
+            onClick={(e) => {
+              e.stopPropagation()
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width) * 100;
+              const y = ((e.clientY - rect.top) / rect.height) * 100;
+              console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
+            }}
+          /> */}
           <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
@@ -272,24 +501,27 @@ export default function InteractiveMap() {
 
                       >
                         <div className={`relative`}>
-                          <div className="flex flex-col items-center">
+                          <div className="flex flex-col items-center z-10">
 
                             <div
                               className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
                             >
-                              <MapPin className="w-3 h-3 text-white" />
+                              {marker.category === 'Restrito' ? <LockKeyhole className="w-3 h-3 text-white" /> : <MapPin className="w-3 h-3 text-white" />}
                             </div>
-                            <Badge > {marker.name} </Badge>
+                            {marker?.name && <Badge > {marker?.name} </Badge>}
                           </div>
 
                           {(selectedMarker === marker.id || hoveredMarker === marker.id) && (
-                            <div className="absolute top-12 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-30 border">
+                            <TooltipContent>
+
+                            {/* <div className={` ${marker.name && 'top-12'} left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-50 border`}> */}
                               <h4 className="font-medium text-gray-900 text-sm">{marker.name}</h4>
                               <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
                               <Badge variant="outline" className="text-xs mt-2">
                                 {marker.category}
                               </Badge>
-                            </div>
+                            {/* </div> */}
+                            </TooltipContent>
                           )}
                         </div>
                       </div>
