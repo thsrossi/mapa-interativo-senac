@@ -11,11 +11,17 @@ import Mapa from './assets/PisoTerreo.jpg'
 import L1 from './assets/Mezanino.jpg'
 import MezaninoSuperior from './assets/MezaninoSuperior.jpg'
 import PrimeiroAndar from './assets/primeiroandar.jpg'
+import SegundoAndar from './assets/segundoAndar.jpg'
+import TerceiroAndar from './assets/terceiroAndar.jpg'
+import QuartoAndar from './assets/quartoAndar.jpg'
 import { markersTerreo } from "./dal/Terreo"
 import { markersMezanino } from "./dal/Mezanino"
 import { StaticImageData } from "next/image"
 import { markersMezaninoSuperior } from "./dal/MezaninoSuperior"
 import { markersL1 } from "./dal/primeiroAndar"
+import { markersL2 } from "./dal/segundoAndar"
+import { markersL3 } from "./dal/terceiroAndar"
+import { markersL4 } from "./dal/quartoAndar"
 
 
 // Dados de exemplo dos marcadores
@@ -41,14 +47,20 @@ export default function InteractiveMap() {
     terreo: markersTerreo,
     mezanino: markersMezanino,
     mezaninoSuperior: markersMezaninoSuperior,
-    primeiroAndar: markersL1
+    primeiroAndar: markersL1,
+    segundoAndar: markersL2,
+    terceiroAndar: markersL3,
+    quartoAndar: markersL4 
   }
 
   const imagensPorAndar: Record<string, StaticImageData> = {
     terreo: Mapa,
     mezanino: L1,
     mezaninoSuperior: MezaninoSuperior,
-    primeiroAndar: PrimeiroAndar
+    primeiroAndar: PrimeiroAndar,
+    segundoAndar: SegundoAndar,
+    terceiroAndar: TerceiroAndar,
+    quartoAndar: QuartoAndar
   }
 
   const imagemMapa = imagensPorAndar[andarSelecionado]
@@ -123,7 +135,7 @@ export default function InteractiveMap() {
             </div>
           )}
 
-          <img
+          {/* <img
             src={imagemMapa.src}
             alt="Planta Baixa"
             className="max-w-none w-[1200px] h-[800px] object-contain"
@@ -135,7 +147,7 @@ export default function InteractiveMap() {
               const y = ((e.clientY - rect.top) / rect.height) * 100;
               console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
             }}
-          />
+          /> */}
         <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
