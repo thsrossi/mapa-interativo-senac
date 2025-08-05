@@ -1,7 +1,19 @@
-import Topbar from "@/components/Topbar/Topbar"
-import Component from "../interactive-map"
-import InteractiveMap from "../interactive-map"
+"use client"
+import { useState } from "react"
 
-export default function Page() {
-  return <InteractiveMap />
+import InteractiveMap from "@/interactive-map"
+import ShortsModal from "@/components/ShortsModal"
+import ShortsPlayer from "@/components/ShortsModal"
+
+const STORAGE_KEY = "shorts_modal_visits"
+
+export default function Home() {
+  const [showModal, setShowModal] = useState(true)
+
+  return (
+    <>
+      {showModal && <ShortsPlayer onClose={() => setShowModal(false)} />}
+      {!showModal && <InteractiveMap />}
+    </>
+  )
 }

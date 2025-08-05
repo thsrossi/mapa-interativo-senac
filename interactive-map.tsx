@@ -99,7 +99,7 @@ export default function InteractiveMap() {
 
     setSelectedMarker(marker.id)
 
-    const { zoomToElement } = transformComponentRef.current
+    const { zoomToElement  } = transformComponentRef.current
 
     const markerElement = document.getElementById(`marker-${marker.id}`)
     if (markerElement && zoomToElement) {
