@@ -24,7 +24,7 @@ export const markersMezanino: MapMarker[] = [
     {
         id: "3",
         name: "Rouparia",
-        description: "",
+        description: "Espaço destinado à organização, armazenamento e distribuição de uniformes e materiais têxteis utilizados nas atividades educacionais.",
         x: 86.24,
         y: 33,
         category: "Vestiário",

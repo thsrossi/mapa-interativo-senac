@@ -24,7 +24,7 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "3",
     name: "Capela",
-    description: "?",
+    description: "Espaço reservado para momentos de reflexão, meditação e práticas religiosas, oferecendo um ambiente tranquilo e acolhedor para alunos, funcionários e visitantes.",
     x: 25.75,
     y: 23.75,
     category: "Capela",
@@ -34,7 +34,7 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "4",
     name: "Vestiários",
-    description: "Vestiários mascunilno e feminino",
+    description: "Vestiários masculino e feminino",
     x: 33,
     y: 25,
     category: "Vestiário",
@@ -94,9 +94,9 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "10",
     name: "Elevador",
-    description: "?",
+    description: "Elevador de acesso exclusivo ao mezanino superior(auditório)",
     x: 49.17,
-    y: 42.25,
+    y: 43.75,
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
@@ -104,7 +104,7 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "11",
     name: "Café do Paço",
-    description: "?",
+    description: "Espaço para pausa, convivência e alimentação com café e lanches.",
     x: 70.49,
     y: 46.25,
     category: "Alimentação",
@@ -124,7 +124,7 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "13",
     name: "Central de Matrículas",
-    description: "?",
+    description: "Local responsável pelo atendimento e suporte aos alunos para processos de matrícula, rematrícula e informações acadêmicas.",
     x: 14.33,
     y: 56.5,
     category: "Secretaria",
@@ -134,11 +134,11 @@ export const markersTerreo: MapMarker[] = [
   {
     id: "14",
     name: "Biblioteca",
-    description: "?",
+    description: "Espaço reservado para estudo, pesquisa e leitura, oferecendo um ambiente tranquilo com acervo diversificado para apoio acadêmico.",
     x: 30.58,
     y: 63,
     category: "Biblioteca",
-    color: "bg-indigo-500",
+    color: "bg-indigo-600",
     visible: true,
   },
   {
