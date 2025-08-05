@@ -41,7 +41,6 @@ export default function Topbar({
 }: TopBarProps) {
 
 
-    console.log(categoriasUnicas)
 
     const [categoriasVisiveis, setCategoriasVisiveis] = useState<string[]>(categoriasUnicas.map((c) => c.name));
 
@@ -124,7 +123,7 @@ export default function Topbar({
                     onChange={(e) => setAndarSelecionado(e.target.value)}
                 >
                     <option value="terreo">Térreo</option>
-                    <option value="superior">Superior</option>
+                    <option value="mezanino">Mezanino</option>
                 </select>
             </div>
             {/* Sidebar */}

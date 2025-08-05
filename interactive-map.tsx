@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
-import { LockKeyhole, MapPin } from "lucide-react"
+import { LockKeyhole, MapPin, Trophy } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import Topbar from "./components/Topbar/Topbar"
@@ -56,7 +56,7 @@ const markersTerreo = [
   {
     id: "5",
     name: "Banheiros",
-    description: "Sanitários masculino e feminino",
+    description: "Sanitários masculinos e femininos",
     x: 51,
     y: 59,
     category: "Sanitário",
@@ -286,68 +286,209 @@ const markersTerreo = [
 ]
 
 
-const markersSuperior: MapMarker[] = [
+const markersMezanino: MapMarker[] = [
   {
     id: "1",
-    name: "Biblioteca",
-    description: "Espaço silencioso com acervo de livros e mesas para estudo individual",
-    x: 20,
-    y: 25,
-    category: "Estudo",
-    color: "bg-indigo-500",
+    name: "Escada",
+    description: "Escadaria que dá acesso ao térreo e mezanino superior",
+    x: 35.97,
+    y: 27,
+    category: "Acesso",
+    color: "bg-blue-500",
     visible: true,
   },
   {
     id: "2",
-    name: "Sala de Música",
-    description: "Ambiente acústico com instrumentos disponíveis para prática musical",
-    x: 85,
-    y: 30,
-    category: "Artes",
-    color: "bg-pink-500",
+    name: "Vestiários",
+    description: "Vestiários masculinos e femininos",
+    x: 80.88,
+    y: 29.75,
+    category: "Vestiário",
+    color: "bg-orange-500",
     visible: true,
   },
   {
     id: "3",
-    name: "Laboratório de Ciências",
-    description: "Laboratório equipado para aulas práticas de química e biologia",
-    x: 75,
-    y: 60,
-    category: "Laboratório",
-    color: "bg-teal-500",
+    name: "Rouparia",
+    description: "",
+    x: 86.24,
+    y: 33,
+    category: "Vestiário",
+    color: "bg-orange-500",
     visible: true,
   },
   {
     id: "4",
+    name: "Aperfeiçoamento Cabeleireiro",
+    description:
+      "Espaço destinado à prática e aperfeiçoamento das técnicas de corte, coloração e penteado, onde os alunos desenvolvem habilidades avançadas em ambiente profissional - Sala 9",
+    x: 8.05,
+    y: 39.88,
+    category: "Aulas Beleza",
+    color: "bg-pink-400",
+    visible: true,
+  },
+  {
+    id: "5",
+    name: "Recepção Podologia",
+    description:
+      "Espaço acolhedor onde os clientes voluntários são recebidos e aguardam atendimento. Aqui, os alunos colocam em prática os conhecimentos adquiridos, sempre sob supervisão profissional, proporcionando cuidados especializados em saúde dos pés.",
+    x: 12.05,
+    y: 46.5,
+    category: "Aulas Saúde",
+    color: "bg-violet-500",
+    visible: true,
+  },
+  {
+    id: "6",
+    name: "Laboratório Podologia",
+    description:
+      "Ambiente equipado para a prática das técnicas podológicas, onde os alunos realizam atendimentos supervisionados, desenvolvendo habilidades em prevenção, diagnóstico e cuidados com a saúde dos pés.",
+    x: 7.05,
+    y: 55.5,
+    category: "Aulas Saúde",
+    color: "bg-violet-500",
+    visible: true,
+  },
+  {
+    id: "7",
+    name: "Escada ",
+    description: "Escadaria que dá acesso ao térreo",
+    x: 21.63,
+    y: 50.13,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "8",
+    name: "Café bar",
+    description:
+      "Os alunos treinam técnicas de barismo e coquetelaria em um ambiente que simula estabelecimentos reais - Sala 11",
+    x: 39.88,
+    y: 42.38,
+    category: "Alimentação",
+    color: "bg-yellow-500",
+    visible: true,
+  },
+  {
+    id: "9",
     name: "Banheiros",
-    description: "Sanitários masculino e feminino do segundo andar",
-    x: 30,
-    y: 40,
+    description: "Sanitários masculinos e femininos",
+    x: 53.63,
+    y: 44.13,
     category: "Sanitário",
     color: "bg-gray-500",
     visible: true,
   },
   {
-    id: "5",
-    name: "Refeitório",
-    description: "Espaço para refeições com mesas comunitárias",
-    x: 80,
-    y: 75,
-    category: "Alimentação",
-    color: "bg-orange-500",
+    id: "10",
+    name: "Coordenação Faculdade Gastronomia",
+    description: "Responsável pela gestão acadêmica do curso e apoio a alunos e professores.",
+    x: 62.97,
+    y: 38.5,
+    category: "Administrativo Senac",
+    color: "bg-orange-900",
     visible: true,
   },
   {
-    id: "6",
-    name: "Espaço Zen",
-    description: "Ambiente para relaxamento e meditação",
-    x: 60,
-    y: 50,
-    category: "Bem-estar",
-    color: "bg-lime-500",
+    id: "11",
+    name: "Ambiente de Treinamento para Competição – Recepção de Hotel",
+    description:
+      "Espaço dedicado ao treino prático e simulações de provas, preparando os alunos para competições na área de recepção hoteleira.",
+    x: 66.13,
+    y: 47.25,
+    category: "Competição",
+    color: "bg-[#D4AF37]",
     visible: true,
   },
-]
+  {
+    id: "12",
+    name: "Sala 16",
+    description: "Ambiente Pedagógico convencional, destinado à aulas teóricas gerais",
+    x: 17.22,
+    y: 65.88,
+    category: "Ambiente Pedagógico",
+    color: "bg-gray-900",
+    visible: true,
+  },
+  {
+    id: "13",
+    name: "Sala 15",
+    description: "Ambiente Pedagógico convencional, destinado à aulas teóricas gerais",
+    x: 39.63,
+    y: 65.88,
+    category: "Ambiente Pedagógico",
+    color: "bg-gray-900",
+    visible: true,
+  },
+  {
+    id: "14",
+    name: "Sala de Moda e Design",
+    description:
+      "Local para criação, prova de roupas e ensaio, e apresentações de moda - Sala 14",
+    x: 48.3,
+    y: 65.88,
+    category: "Aulas Moda",
+    color: "bg-purple-400",
+    visible: true,
+  },
+  {
+    id: "15",
+    name: "Sala de Moda e Design",
+    description:
+      "Local para criação, prova de roupas e ensaio, e apresentações de moda - Sala 13",
+    x: 63.58,
+    y: 65.88,
+    category: "Aulas Moda",
+    color: "bg-purple-400",
+    visible: true,
+  },
+  {
+    id: "16",
+    name: "Sala de Moda e Design",
+    description:
+      "Local para criação, prova de roupas e ensaio, e apresentações de moda - Sala 12",
+    x: 79.75,
+    y: 65.88,
+    category: "Aulas Moda",
+    color: "bg-purple-400",
+    visible: true,
+  },
+  {
+    id: "17",
+    name: "Escadaria",
+    description: "Escadaria que dá acesso ao térreo",
+    x: 92.75,
+    y: 63.38,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+  {
+    id: "18",
+    name: "Cozinha Didáica",
+    description:
+      "Ambiente equipado para o ensino prático de técnicas culinárias, onde os alunos desenvolvem habilidades de preparo, higiene e apresentação de alimentos em condições reais de trabalho.",
+    x: 32.83,
+    y: 43.13,
+    category: "Alimentação",
+    color: "bg-yellow-500",
+    visible: true,
+  },
+  {
+    id: "19",
+    name: "Escadaria",
+    description:
+      "Escadaria que dá acesso ao térreo e mezanino superior",
+    x: 63.63,
+    y: 59.13,
+    category: "Acesso",
+    color: "bg-blue-500",
+    visible: true,
+  },
+];
+
 
 
 export default function InteractiveMap() {
@@ -357,8 +498,9 @@ export default function InteractiveMap() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
   const transformComponentRef = useRef<ReactZoomPanPinchContentRef>({} as ReactZoomPanPinchContentRef)
   const [andarSelecionado, setAndarSelecionado] = useState("terreo")
+  const [imageLoaded, setImageLoaded] = useState(false)
 
-  const imagemMapa = andarSelecionado === "superior" ? L1 : Mapa
+  const imagemMapa = andarSelecionado === "mezanino" ? L1 : Mapa
 
   const [categoriasUnicas, setCategoriasUnicas] = useState<Category[]>({} as Category[])
 
@@ -383,8 +525,13 @@ export default function InteractiveMap() {
       )
       setCategoriasUnicas(arrayAuxiliar)
     } else {
-      setMarkers(markersSuperior)
-      setCategoriasUnicas(Array.from(new Set(markersSuperior.map((m) => { return ({ name: m.category, color: m.color }) }))))
+      setMarkers(markersMezanino)
+      const arrayAuxiliar = Array.from(
+        new Map(
+          markersMezanino.map((m) => [`${m.category}-${m.color}`, { name: m.category, color: m.color }])
+        ).values()
+      )
+      setCategoriasUnicas(arrayAuxiliar)
 
     }
 
@@ -432,8 +579,15 @@ export default function InteractiveMap() {
         />
 
         <div className="flex-1 relative max-w-screen z-20 mt-5" style={{ overflow: "auto" }}>
+
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
+              <p>Carregando planta...</p>
+            </div>
+          )}
+
           {/* <img
-            src={Mapa.src}
+            src={imagemMapa.src}
             alt="Planta Baixa"
             className="max-w-none w-[1200px] h-[800px] object-contain"
             draggable={false}
@@ -445,7 +599,7 @@ export default function InteractiveMap() {
               console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
             }}
           /> */}
-          <TransformWrapper
+        <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
             minScale={0.5}
@@ -482,9 +636,11 @@ export default function InteractiveMap() {
                     const y = ((e.clientY - rect.top) / rect.height) * 100
                     console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`)
                   }}
+                  onLoad={() => setImageLoaded(true)}
+
                 />
 
-                {markers.filter(m => m.visible).map((marker) => (
+                {imageLoaded && markers.filter(m => m.visible).map((marker) => (
                   <Tooltip key={marker.id}>
                     <TooltipTrigger asChild >
                       <div
@@ -506,21 +662,21 @@ export default function InteractiveMap() {
                             <div
                               className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
                             >
-                              {marker.category === 'Restrito' ? <LockKeyhole className="w-3 h-3 text-white" /> : <MapPin className="w-3 h-3 text-white" />}
+                              {marker.category === 'Restrito' ? <LockKeyhole className="w-3 h-3 text-white" /> : marker.category === "Competição" ? <Trophy className="w-3 h-3 text-white" />: <MapPin className="w-3 h-3 text-white" />}
                             </div>
-                            {marker?.name && <Badge > {marker?.name} </Badge>}
+                            {marker?.name && <Badge className="max-w-65 justify-start" > {marker?.name} </Badge>}
                           </div>
 
                           {(selectedMarker === marker.id || hoveredMarker === marker.id) && (
                             <TooltipContent>
 
-                            {/* <div className={` ${marker.name && 'top-12'} left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-50 border`}> */}
+                              {/* <div className={` ${marker.name && 'top-12'} left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-50 border`}> */}
                               <h4 className="font-medium text-gray-900 text-sm">{marker.name}</h4>
                               <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
                               <Badge variant="outline" className="text-xs mt-2">
                                 {marker.category}
                               </Badge>
-                            {/* </div> */}
+                              {/* </div> */}
                             </TooltipContent>
                           )}
                         </div>
