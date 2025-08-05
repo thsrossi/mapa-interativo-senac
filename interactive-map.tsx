@@ -119,7 +119,7 @@ export default function InteractiveMap() {
             </div>
           )}
 
-          {/* <img
+          <img
             src={imagemMapa.src}
             alt="Planta Baixa"
             className="max-w-none w-[1200px] h-[800px] object-contain"
@@ -131,7 +131,7 @@ export default function InteractiveMap() {
               const y = ((e.clientY - rect.top) / rect.height) * 100;
               console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
             }}
-          /> */}
+          />
         <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
