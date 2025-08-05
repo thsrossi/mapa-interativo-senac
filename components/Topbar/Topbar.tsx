@@ -125,6 +125,7 @@ export default function Topbar({
                     <option value="terreo">Térreo</option>
                     <option value="mezanino">Mezanino</option>
                     <option value="mezaninoSuperior">Mezanino Superior</option>
+                    <option value="primeiroAndar">Primeiro Andar - João Daud't</option>
                 </select>
             </div>
             {/* Sidebar */}

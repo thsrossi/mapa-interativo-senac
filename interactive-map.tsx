@@ -10,10 +10,12 @@ import { MapMarker, Category, TransformComponentRef } from "@/types"
 import Mapa from './assets/PisoTerreo.jpg'
 import L1 from './assets/Mezanino.jpg'
 import MezaninoSuperior from './assets/MezaninoSuperior.jpg'
+import PrimeiroAndar from './assets/primeiroandar.jpg'
 import { markersTerreo } from "./dal/Terreo"
 import { markersMezanino } from "./dal/Mezanino"
 import { StaticImageData } from "next/image"
 import { markersMezaninoSuperior } from "./dal/MezaninoSuperior"
+import { markersL1 } from "./dal/primeiroAndar"
 
 
 // Dados de exemplo dos marcadores
@@ -38,13 +40,15 @@ export default function InteractiveMap() {
   const markersPorAndar: Record<string, MapMarker[]> = {
     terreo: markersTerreo,
     mezanino: markersMezanino,
-    mezaninoSuperior: markersMezaninoSuperior
+    mezaninoSuperior: markersMezaninoSuperior,
+    primeiroAndar: markersL1
   }
 
   const imagensPorAndar: Record<string, StaticImageData> = {
     terreo: Mapa,
     mezanino: L1,
-    mezaninoSuperior: MezaninoSuperior
+    mezaninoSuperior: MezaninoSuperior,
+    primeiroAndar: PrimeiroAndar
   }
 
   const imagemMapa = imagensPorAndar[andarSelecionado]
