@@ -157,7 +157,7 @@ export default function InteractiveMap() {
               contentClass="w-full h-screen flex items-center justify-center"
             >
               <div className="relative inline-block z-20 py-16">
-                <img
+                {/* <img
                   src={imagemMapa.src}
                   alt="Planta Baixa"
                   className="max-w-none w-[1200px] h-[800px] object-contain"
@@ -171,7 +171,7 @@ export default function InteractiveMap() {
                   }}
                   onLoad={() => setImageLoaded(true)}
 
-                />
+                /> */}
 
                 {imageLoaded && markers.filter(m => m.visible).map((marker) => (
                   <Tooltip key={marker.id}>
