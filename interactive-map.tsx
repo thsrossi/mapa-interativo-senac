@@ -516,6 +516,7 @@ export default function InteractiveMap() {
   }
 
   useEffect(() => {
+    setImageLoaded(false)
     if (andarSelecionado === "terreo") {
       setMarkers(markersTerreo)
       const arrayAuxiliar = Array.from(
