@@ -103,7 +103,7 @@ export default function InteractiveMap() {
 
     const markerElement = document.getElementById(`marker-${marker.id}`)
     if (markerElement && zoomToElement) {
-      zoomToElement(markerElement, 1.5, 300)
+      zoomToElement(markerElement, isMobile ? 1.2 : 1.5, 300)
     }
   }
 
@@ -164,6 +164,7 @@ export default function InteractiveMap() {
             }}
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
             // onTouchMove={handleMapTouchMove}
+            onPanningStart={(e)=>{isMobile && setSelectedMarker(null)}}
 
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
@@ -190,49 +191,53 @@ export default function InteractiveMap() {
                 />
 
                 {imageLoaded && markers.filter(m => m.visible).map((marker) => (
-                  <Tooltip key={marker.id}>
-                    <TooltipTrigger asChild >
-                      <div
-                        id={`marker-${marker.id}`}
-                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all hover:scale-110 ${selectedMarker === marker.id ? "scale-125 z-20" : "z-10"
-                          }`}
-                        style={{
-                          left: `${marker.x}%`,
-                          top: `${marker.y}%`,
-                        }}
-                        onClick={() => { setSelectedMarker(marker.id); centerOnMarker(marker) }}
-                        onMouseEnter={() => setHoveredMarker(marker.id)}
-                        onMouseLeave={() => { setHoveredMarker(null); setSelectedMarker(null) }}
-                        // onTouchStart={() => setSelectedMarker(marker.id)}
-                        
-                      >
-                        <div className={`relative`}>
-                          <div className="flex flex-col items-center z-10">
-
-                            <div
-                              className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
-                            >
-                              {marker.category === 'Restrito' ? <LockKeyhole className="w-3 h-3 text-white" /> : marker.category === "Competição" ? <Trophy className="w-3 h-3 text-white" />: <MapPin className="w-3 h-3 text-white" />}
-                            </div>
-                            {marker?.name && <Badge className="max-w-65 justify-start" > {marker?.name} </Badge>}
-                          </div>
-
-                          {(selectedMarker === marker.id || hoveredMarker === marker.id) && (
-                            <TooltipContent>
-
-                              {/* <div className={` ${marker.name && 'top-12'} left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-2 min-w-48 z-50 border`}> */}
-                              <h4 className="font-medium text-gray-900 text-sm">{marker.name}</h4>
-                              <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
-                              <Badge variant="outline" className="text-xs mt-2">
-                                {marker.category}
-                              </Badge>
-                              {/* </div> */}
-                            </TooltipContent>
+                  <div
+                    key={marker.id}
+                    id={`marker-${marker.id}`}
+                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all hover:scale-110 ${selectedMarker === marker.id || hoveredMarker === marker.id ? "scale-125 z-20" : "z-10"}`}
+                    style={{
+                      left: `${marker.x}%`,
+                      top: `${marker.y}%`,
+                    }}
+                    onClick={() => {
+                      if (isMobile) {
+                        setSelectedMarker(prev => prev === marker.id ? null : marker.id)
+                      }
+                        centerOnMarker(marker)
+                      
+                    }}
+                    onMouseEnter={() => {!isMobile && (setHoveredMarker(marker.id)); !isMobile && setSelectedMarker(null)}}
+                    onMouseLeave={() => {!isMobile && setHoveredMarker(null); setSelectedMarker(null)}}
+                  >
+                    <div className="relative">
+                      <div className="flex flex-col items-center z-10">
+                        <div
+                          className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
+                        >
+                          {marker.category === 'Restrito' ? (
+                            <LockKeyhole className="w-3 h-3 text-white" />
+                          ) : marker.category === "Competição" ? (
+                            <Trophy className="w-3 h-3 text-white" />
+                          ) : (
+                            <MapPin className="w-3 h-3 text-white" />
                           )}
                         </div>
+                        {marker?.name && (
+                          <Badge className="max-w-65 justify-start">{marker?.name}</Badge>
+                        )}
                       </div>
-                    </TooltipTrigger>
-                  </Tooltip>
+
+                      {(hoveredMarker === marker.id || selectedMarker === marker.id) && (
+                        <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-200 rounded-lg shadow-md px-3 py-2 w-60 z-50`}>
+                          <h4 className="font-semibold text-sm text-gray-900">{marker.name}</h4>
+                          <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
+                          <Badge variant="outline" className="text-xs mt-2">
+                            {marker.category}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </TransformComponent>

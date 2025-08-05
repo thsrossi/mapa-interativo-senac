@@ -119,7 +119,7 @@ export default function Topbar({
 
                 <select
                     value={andarSelecionado}
-                    className="border rounded px-2 py-1 text-sm"
+                    className="border rounded px-2 py-1 text-sm max-w-30 md:max-w-full"
                     onChange={(e) => setAndarSelecionado(e.target.value)}
                 >
                     <option value="terreo">Térreo</option>
