@@ -4,9 +4,10 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Mapa Interativo - Senac PR - Unidade Curitiba Centro',
+  description: 'Mapa interativo do Senac, unidade Centro Curitiba Centro - iniciado por v0',
   generator: 'v0.dev',
+
 }
 
 export default function RootLayout({
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="shortcut icon" href="/favicon.ico"></link>
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
