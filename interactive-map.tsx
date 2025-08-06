@@ -156,7 +156,7 @@ export default function InteractiveMap() {
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
             // onTouchMove={handleMapTouchMove}
             onPanningStart={(e)=>{isMobile && setSelectedMarker(null)}}
-
+            
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
             <TransformComponent
@@ -164,7 +164,7 @@ export default function InteractiveMap() {
               wrapperClass="max-w-screen max-h-screen"
               contentClass="w-full h-screen flex items-center justify-center"
             >
-              <div className="relative inline-block z-20 py-16">
+              <div className="relative inline-block z-20 py-16 m-20">
                 <img
                   src={imagemMapa}
                   alt="Planta Baixa"
@@ -198,7 +198,7 @@ export default function InteractiveMap() {
                       
                     }}
                     onMouseEnter={() => {!isMobile && (setHoveredMarker(marker.id)); !isMobile && setSelectedMarker(null)}}
-                    onMouseLeave={() => {!isMobile && setHoveredMarker(null); setSelectedMarker(null)}}
+                    onMouseLeave={() => {setHoveredMarker(null); setSelectedMarker(null)}}
                   >
                     <div className="relative">
                       <div className="flex flex-col items-center z-10">
