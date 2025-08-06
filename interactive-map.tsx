@@ -42,7 +42,7 @@ export default function InteractiveMap() {
     primeiroAndar: markersL1,
     segundoAndar: markersL2,
     terceiroAndar: markersL3,
-    quartoAndar: markersL4 
+    quartoAndar: markersL4
   }
 
   const imagensPorAndar: Record<string, string> = {
@@ -90,11 +90,11 @@ export default function InteractiveMap() {
 
     setSelectedMarker(marker.id)
 
-    const { zoomToElement,   } = transformComponentRef.current
+    const { zoomToElement } = transformComponentRef.current
 
     const markerElement = document.getElementById(`marker-${marker.id}`)
     if (markerElement && zoomToElement) {
-      zoomToElement(markerElement, isMobile ? 1.2 : 1.5, 400, "easeOut")
+      zoomToElement(markerElement, isMobile ? 1.1 : 1.2, 200, "easeOut")
     }
   }
 
@@ -140,7 +140,7 @@ export default function InteractiveMap() {
               console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
             }}
           /> */}
-        <TransformWrapper
+          <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
             minScale={0.5}
@@ -156,8 +156,8 @@ export default function InteractiveMap() {
             }}
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
             // onTouchMove={handleMapTouchMove}
-            onPanningStart={(e)=>{isMobile && setSelectedMarker(null)}}
-            
+            onPanningStart={(e) => { isMobile && setSelectedMarker(null) }}
+
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
             <TransformComponent
@@ -195,11 +195,11 @@ export default function InteractiveMap() {
                       if (isMobile) {
                         setSelectedMarker(prev => prev === marker.id ? null : marker.id)
                       }
-                        centerOnMarker(marker)
-                      
+                      centerOnMarker(marker)
+
                     }}
-                    onMouseEnter={() => {!isMobile && (setHoveredMarker(marker.id)); !isMobile && setSelectedMarker(null)}}
-                    onMouseLeave={() => {setHoveredMarker(null); setSelectedMarker(null)}}
+                    onMouseEnter={() => { !isMobile && (setHoveredMarker(marker.id)); }}
+                    onMouseLeave={() => { setHoveredMarker(null); setSelectedMarker(null) }}
                   >
                     <div className="relative">
                       <div className="flex flex-col items-center z-10">
@@ -220,16 +220,16 @@ export default function InteractiveMap() {
                       </div>
 
                       {(hoveredMarker === marker.id || selectedMarker === marker.id) && (
-                        <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-200 rounded-lg shadow-md px-3 py-2 w-60 z-50`}>
+                        <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-2xl px-3 py-2 w-60 z-50`}>
                           {/* Preview da imagem */}
-                          {/* {marker && (
+                          {marker.image && (
                             <img
-                              src={imagemMapa}
+                              src={'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/markersImages/' + marker.image}
                               alt={`Preview de ${marker.name}`}
                               className="w-full h-24 object-cover rounded-md mb-2"
                               loading="lazy"
                             />
-                          )} */}
+                          )}
 
                           <h4 className="font-semibold text-sm text-gray-900">{marker.name}</h4>
                           <p className="text-xs text-gray-600 mt-1">{marker.description}</p>

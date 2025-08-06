@@ -20,6 +20,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Aulas Gastronomia",
     color: "bg-green-500",
     visible: true,
+    image: 'confeitaria.jpg'
   },
   {
     id: "3",
@@ -80,6 +81,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    image: 'recepcao.jpg'
   },
   {
     id: "9",
@@ -90,6 +92,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    image: 'escadasAuditorio.jpg'
   },
   {
     id: "10",
@@ -140,6 +143,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Biblioteca",
     color: "bg-indigo-600",
     visible: true,
+    image:'biblioteca.jpg'
   },
   {
     id: "15",
@@ -180,6 +184,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    image: "escadarouparia.jpg"
   },
   {
     id: "19",
@@ -250,6 +255,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Descanso",
     color: "bg-green-200",
     visible: true,
+    image: 'mesasCirculacao.jpeg'
   },
   {
     id: "26",

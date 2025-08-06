@@ -7,6 +7,7 @@ export interface MapMarker {
     category: string
     color: string
     visible: boolean
+    image?:string
 }
 
 export interface Category {
