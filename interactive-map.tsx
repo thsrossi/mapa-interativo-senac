@@ -14,6 +14,7 @@ import { markersL1 } from "./dal/primeiroAndar"
 import { markersL2 } from "./dal/segundoAndar"
 import { markersL3 } from "./dal/terceiroAndar"
 import { markersL4 } from "./dal/quartoAndar"
+import Image from "next/image"
 
 
 // Dados de exemplo dos marcadores
@@ -223,11 +224,13 @@ export default function InteractiveMap() {
                         <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-2xl px-3 py-2 w-60 z-50`}>
                           {/* Preview da imagem */}
                           {marker.image && (
-                            <img
+                            <Image
                               src={'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/markersImages/' + marker.image}
                               alt={`Preview de ${marker.name}`}
                               className="w-full h-24 object-cover rounded-md mb-2"
                               loading="lazy"
+                              width={166}
+                              height={96}
                             />
                           )}
 
