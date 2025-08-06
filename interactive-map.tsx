@@ -90,11 +90,11 @@ export default function InteractiveMap() {
 
     setSelectedMarker(marker.id)
 
-    const { zoomToElement  } = transformComponentRef.current
+    const { zoomToElement,   } = transformComponentRef.current
 
     const markerElement = document.getElementById(`marker-${marker.id}`)
     if (markerElement && zoomToElement) {
-      zoomToElement(markerElement, isMobile ? 1.2 : 1.5, 300)
+      zoomToElement(markerElement, isMobile ? 1.2 : 1.5, 400, "easeOut")
     }
   }
 
@@ -116,6 +116,7 @@ export default function InteractiveMap() {
           setSidebarOpen={setSidebarOpen}
           andarSelecionado={andarSelecionado}
           setAndarSelecionado={setAndarSelecionado}
+          isMobile={isMobile}
         />
 
         <div className="flex-1 relative max-w-screen z-20 mt-5" style={{ overflow: "auto" }}>
@@ -164,7 +165,7 @@ export default function InteractiveMap() {
               wrapperClass="max-w-screen max-h-screen"
               contentClass="w-full h-screen flex items-center justify-center"
             >
-              <div className="relative inline-block z-20 py-16 m-20">
+              <div className="relative inline-block z-20 py-16 m-30">
                 <img
                   src={imagemMapa}
                   alt="Planta Baixa"
@@ -220,6 +221,16 @@ export default function InteractiveMap() {
 
                       {(hoveredMarker === marker.id || selectedMarker === marker.id) && (
                         <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-200 rounded-lg shadow-md px-3 py-2 w-60 z-50`}>
+                          {/* Preview da imagem */}
+                          {/* {marker && (
+                            <img
+                              src={imagemMapa}
+                              alt={`Preview de ${marker.name}`}
+                              className="w-full h-24 object-cover rounded-md mb-2"
+                              loading="lazy"
+                            />
+                          )} */}
+
                           <h4 className="font-semibold text-sm text-gray-900">{marker.name}</h4>
                           <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
                           <Badge variant="outline" className="text-xs mt-2">

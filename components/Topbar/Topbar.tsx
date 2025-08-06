@@ -25,6 +25,7 @@ interface TopBarProps {
     setSidebarOpen: (open: boolean) => void // 
     andarSelecionado: string
     setAndarSelecionado: (andar: string) => void
+    isMobile: boolean
 }
 
 export default function Topbar({
@@ -37,7 +38,8 @@ export default function Topbar({
     categoriasUnicas,
     sidebarOpen,
     andarSelecionado,
-    setAndarSelecionado
+    setAndarSelecionado,
+    isMobile
 }: TopBarProps) {
 
 
@@ -71,7 +73,8 @@ export default function Topbar({
 
         const markerElement = document.getElementById(`marker-${marker.id}`);
         if (markerElement && zoomToElement) {
-            zoomToElement(markerElement, 1.5, 300); // Zoom 1.5x e animação de 300ms
+            zoomToElement(markerElement, isMobile ? 1.2 : 1.5, 400, "easeOut")
+
         }
     };
 
