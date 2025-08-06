@@ -7,16 +7,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Badge } from "@/components/ui/badge"
 import Topbar from "./components/Topbar/Topbar"
 import { MapMarker, Category, TransformComponentRef } from "@/types"
-import Mapa from './assets/PisoTerreo.jpg'
-import L1 from './assets/Mezanino.jpg'
-import MezaninoSuperior from './assets/MezaninoSuperior.jpg'
-import PrimeiroAndar from './assets/primeiroandar.jpg'
-import SegundoAndar from './assets/segundoAndar.jpg'
-import TerceiroAndar from './assets/terceiroAndar.jpg'
-import QuartoAndar from './assets/quartoAndar.jpg'
 import { markersTerreo } from "./dal/Terreo"
 import { markersMezanino } from "./dal/Mezanino"
-import { StaticImageData } from "next/image"
 import { markersMezaninoSuperior } from "./dal/MezaninoSuperior"
 import { markersL1 } from "./dal/primeiroAndar"
 import { markersL2 } from "./dal/segundoAndar"
@@ -53,16 +45,15 @@ export default function InteractiveMap() {
     quartoAndar: markersL4 
   }
 
-  const imagensPorAndar: Record<string, StaticImageData> = {
-    terreo: Mapa,
-    mezanino: L1,
-    mezaninoSuperior: MezaninoSuperior,
-    primeiroAndar: PrimeiroAndar,
-    segundoAndar: SegundoAndar,
-    terceiroAndar: TerceiroAndar,
-    quartoAndar: QuartoAndar
+  const imagensPorAndar: Record<string, string> = {
+    terreo: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/PisoTerreoteste.webp',
+    mezanino: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/Mezanino.webp',
+    mezaninoSuperior: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/MezaninoSuperior.webp',
+    primeiroAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/primeiroandar.webp',
+    segundoAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/segundoAndar.webp',
+    terceiroAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/terceiroAndar.webp',
+    quartoAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/quartoAndar.webp',
   }
-
   const imagemMapa = imagensPorAndar[andarSelecionado]
 
   useEffect(() => {
@@ -175,7 +166,7 @@ export default function InteractiveMap() {
             >
               <div className="relative inline-block z-20 py-16">
                 <img
-                  src={imagemMapa.src}
+                  src={imagemMapa}
                   alt="Planta Baixa"
                   className="max-w-none w-[1200px] h-[800px] object-contain"
                   draggable={false}
