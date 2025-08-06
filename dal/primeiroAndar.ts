@@ -11,6 +11,7 @@ export const markersL1: MapMarker[] = [
     category: "Alimentação",
     color: "bg-yellow-500",
     visible: true,
+    image: "restauranteEscola.jpg"
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    
   },
   {
     id: "3",
@@ -53,6 +55,7 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    image:"rampa1andar.jpg"
   },
   {
     id: "6",
@@ -74,17 +77,19 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    image:'salaoEscola.jpg'
   },
   {
     id: "8",
     name: "Ambiente de Treinamento para Competição – Cabeleireiro",
     description:
-      "Espaço dedicado à preparação técnica dos alunos para competições na área de beleza, com foco em corte, coloração e penteado, simulando as condições reais das provas - Cabeleireiro Sala 1",
+      "Espaço dedicado à preparação técnica dos alunos para competições na área de Cabeleireiro, Estética e Bem-Estar - Cabeleireiro Sala 1",
     x: 49.83,
     y: 56.91,
     category: "Competição",
     color: "bg-[#D4AF37]",
     visible: true,
+    image:'competicaoBeleza.jpg'
   },
   {
     id: "9",
@@ -116,6 +121,7 @@ export const markersL1: MapMarker[] = [
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
+    image:'salaoPedagogico2.jpg'
   },
   {
     id: "12",
@@ -127,6 +133,7 @@ export const markersL1: MapMarker[] = [
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
+    image:"salaoPedagogico3.jpg"
   },
   {
     id: "13",
