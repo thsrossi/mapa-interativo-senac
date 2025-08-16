@@ -3,10 +3,10 @@
 import { useState, useRef, useEffect } from "react"
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 import { LockKeyhole, MapPin, Trophy } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { Badge } from "@/components/ui/badge"
 import Topbar from "./components/Topbar/Topbar"
-import { MapMarker, Category, TransformComponentRef } from "@/types"
+import { MapMarker, Category } from "@/types"
 import { markersTerreo } from "./dal/Terreo"
 import { markersMezanino } from "./dal/Mezanino"
 import { markersMezaninoSuperior } from "./dal/MezaninoSuperior"
@@ -15,15 +15,7 @@ import { markersL2 } from "./dal/segundoAndar"
 import { markersL3 } from "./dal/terceiroAndar"
 import { markersL4 } from "./dal/quartoAndar"
 import Image from "next/image"
-
-
-// Dados de exemplo dos marcadores
-
-
-
-
-
-
+import MarkerDrawer from "./components/MarkerDrawer/MarkerDrawer"
 
 export default function InteractiveMap() {
   const [markers, setMarkers] = useState<MapMarker[]>([])
@@ -35,6 +27,7 @@ export default function InteractiveMap() {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [categoriasUnicas, setCategoriasUnicas] = useState<Category[]>([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [markerAberto, setMarkerAberto] = useState<MapMarker | null>(null)
 
   const markersPorAndar: Record<string, MapMarker[]> = {
     terreo: markersTerreo,
@@ -43,17 +36,17 @@ export default function InteractiveMap() {
     primeiroAndar: markersL1,
     segundoAndar: markersL2,
     terceiroAndar: markersL3,
-    quartoAndar: markersL4
+    quartoAndar: markersL4,
   }
 
   const imagensPorAndar: Record<string, string> = {
-    terreo: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/PisoTerreoteste.webp',
-    mezanino: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/Mezanino.webp',
-    mezaninoSuperior: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/MezaninoSuperior.webp',
-    primeiroAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/primeiroandar.webp',
-    segundoAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/segundoAndar.webp',
-    terceiroAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/terceiroAndar.webp',
-    quartoAndar: 'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/quartoAndar.webp',
+    terreo: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/PisoTerreoteste.webp",
+    mezanino: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/Mezanino.webp",
+    mezaninoSuperior: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/MezaninoSuperior.webp",
+    primeiroAndar: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/primeiroandar.webp",
+    segundoAndar: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/segundoAndar.webp",
+    terceiroAndar: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/terceiroAndar.webp",
+    quartoAndar: "https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/quartoAndar.webp",
   }
   const imagemMapa = imagensPorAndar[andarSelecionado]
 
@@ -64,9 +57,7 @@ export default function InteractiveMap() {
     setMarkers(novosMarkers)
 
     const categorias = Array.from(
-      new Map(
-        novosMarkers.map((m) => [`${m.category}-${m.color}`, { name: m.category, color: m.color }])
-      ).values()
+      new Map(novosMarkers.map((m) => [`${m.category}-${m.color}`, { name: m.category, color: m.color }])).values()
     )
 
     setCategoriasUnicas(categorias)
@@ -99,6 +90,39 @@ export default function InteractiveMap() {
     }
   }
 
+  const tooltipRef = useRef<HTMLDivElement | null>(null)
+
+  // Fecha tooltip ao clicar fora dela e fora do marcador
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (!selectedMarker) return
+
+      const tooltipEl = tooltipRef.current
+      const markerEl = document.getElementById(`marker-${selectedMarker}`)
+
+      if (
+        tooltipEl &&
+        !tooltipEl.contains(event.target as Node) &&
+        markerEl &&
+        !markerEl.contains(event.target as Node)
+      ) {
+        setSelectedMarker(null)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [selectedMarker])
+
+  // Fecha tooltip ao abrir drawer
+  useEffect(() => {
+    if (markerAberto) {
+      setSelectedMarker(null)
+    }
+  }, [markerAberto])
+
   if (isMobile === null) return null
 
   return (
@@ -121,51 +145,25 @@ export default function InteractiveMap() {
         />
 
         <div className="flex-1 relative max-w-screen z-20 mt-5" style={{ overflow: "auto" }}>
-
           {!imageLoaded && (
             <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
               <p>Carregando planta...</p>
             </div>
           )}
 
-          {/* <img
-            src={imagemMapa.src}
-            alt="Planta Baixa"
-            className="max-w-none w-[1200px] h-[800px] object-contain"
-            draggable={false}
-            onClick={(e) => {
-              e.stopPropagation()
-              const rect = e.currentTarget.getBoundingClientRect();
-              const x = ((e.clientX - rect.left) / rect.width) * 100;
-              const y = ((e.clientY - rect.top) / rect.height) * 100;
-              console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`);
-            }}
-          /> */}
           <TransformWrapper
             ref={transformComponentRef}
             initialScale={isMobile ? 0.7 : 1}
             minScale={0.5}
             maxScale={4}
             centerOnInit={false}
-
-
             wheel={{ step: 0.1 }}
-            pinch={{ step: .1 }}
-            panning={{
-              disabled: (isMobile && sidebarOpen), // Desabilita panning quando sidebar está aberta
-
-            }}
+            pinch={{ step: 0.1 }}
+            panning={{ disabled: isMobile && sidebarOpen }}
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
-            // onTouchMove={handleMapTouchMove}
-            onPanningStart={(e) => { isMobile && setSelectedMarker(null) }}
-
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
-            <TransformComponent
-
-              wrapperClass="max-w-screen max-h-screen"
-              contentClass="w-full h-screen flex items-center justify-center"
-            >
+            <TransformComponent wrapperClass="max-w-screen max-h-screen" contentClass="w-full h-screen flex items-center justify-center">
               <div className="relative inline-block z-20 py-16 m-30">
                 <img
                   src={imagemMapa}
@@ -180,52 +178,44 @@ export default function InteractiveMap() {
                     console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`)
                   }}
                   onLoad={() => setImageLoaded(true)}
-
                 />
 
                 {imageLoaded && markers.filter(m => m.visible).map((marker) => (
                   <div
                     key={marker.id}
                     id={`marker-${marker.id}`}
-                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all hover:scale-110 ${selectedMarker === marker.id || hoveredMarker === marker.id ? "scale-125 z-20" : "z-10"}`}
-                    style={{
-                      left: `${marker.x}%`,
-                      top: `${marker.y}%`,
-                    }}
+                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all hover:scale-110 ${selectedMarker === marker.id || hoveredMarker === marker.id ? "scale-125 z-30" : "z-20"}`}
+                    style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
                     onClick={() => {
                       if (isMobile) {
                         setSelectedMarker(prev => prev === marker.id ? null : marker.id)
                       }
                       centerOnMarker(marker)
-
                     }}
-                    onMouseEnter={() => { !isMobile && (setHoveredMarker(marker.id)); }}
-                    onMouseLeave={() => { setHoveredMarker(null); setSelectedMarker(null) }}
+                    // MOVA o mouse enter/leave pro container maior:
+                    onMouseEnter={() => { if (!isMobile) setHoveredMarker(marker.id) }}
+                    onMouseLeave={() => { if (!isMobile) { setHoveredMarker(null); setSelectedMarker(null) } }}
                   >
-                    <div className="relative">
-                      <div className="flex flex-col items-center z-10">
-                        <div
-                          className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}
-                        >
-                          {marker.category === 'Restrito' ? (
-                            <LockKeyhole className="w-3 h-3 text-white" />
-                          ) : marker.category === "Competição" ? (
-                            <Trophy className="w-3 h-3 text-white" />
-                          ) : (
-                            <MapPin className="w-3 h-3 text-white" />
-                          )}
-                        </div>
-                        {marker?.name && (
-                          <Badge className="max-w-65 justify-start">{marker?.name}</Badge>
+                    <div className="relative flex flex-col items-center z-10">
+                      <div className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}>
+                        {marker.category === 'Restrito' ? (
+                          <LockKeyhole className="w-3 h-3 text-white" />
+                        ) : marker.category === "Competição" ? (
+                          <Trophy className="w-3 h-3 text-white" />
+                        ) : (
+                          <MapPin className="w-3 h-3 text-white" />
                         )}
                       </div>
+                      {marker?.name && <Badge className="max-w-65 justify-start">{marker?.name}</Badge>}
 
                       {(hoveredMarker === marker.id || selectedMarker === marker.id) && (
-                        <div className={`absolute ${marker.name && 'top-12'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-2xl px-3 py-2 w-60 z-50`}>
-                          {/* Preview da imagem */}
+                        <div
+                          className={`absolute ${marker.name ? 'top-6' : 'top-6'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-2xl px-3 py-2 w-60 z-[999] pointer-events-auto`}
+                        // REMOVE onMouseEnter e onMouseLeave do tooltip
+                        >
                           {marker.image && (
                             <Image
-                              src={'https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/markersImages/' + marker.image}
+                              src={`https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/markersImages/${marker.image}`}
                               alt={`Preview de ${marker.name}`}
                               className="w-full h-24 object-cover rounded-md mb-2"
                               loading="lazy"
@@ -236,19 +226,37 @@ export default function InteractiveMap() {
 
                           <h4 className="font-semibold text-sm text-gray-900">{marker.name}</h4>
                           <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
-                          <Badge variant="outline" className="text-xs mt-2">
-                            {marker.category}
-                          </Badge>
+                          <Badge variant="outline" className="text-xs mt-2">{marker.category}</Badge>
+
+                          <div className="mt-2">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setMarkerAberto(marker)
+                              }}
+                              className="mt-2 text-blue-600 text-sm hover:underline"
+                            >
+                              Ver mais
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>
                   </div>
                 ))}
+
               </div>
             </TransformComponent>
           </TransformWrapper>
         </div>
       </div>
+      {markerAberto && (
+        <MarkerDrawer
+          marker={markerAberto}
+          open={!!markerAberto}
+          onOpenChange={(open) => !open && setMarkerAberto(null)}
+        />
+      )}
     </TooltipProvider>
   )
 }
