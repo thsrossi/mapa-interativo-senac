@@ -8,6 +8,7 @@ export interface MapMarker {
     color: string
     visible: boolean
     image?:string
+    video?: string
 }
 
 export interface Category {

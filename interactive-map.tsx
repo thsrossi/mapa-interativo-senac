@@ -237,17 +237,18 @@ export default function InteractiveMap() {
                           <p className="text-xs text-gray-600 mt-1">{marker.description}</p>
                           <Badge variant="outline" className="text-xs mt-2">{marker.category}</Badge>
 
-                          <div className="mt-2">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                setMarkerAberto(marker)
-                              }}
-                              className="mt-2 text-blue-600 text-sm hover:underline"
-                            >
-                              Ver mais
-                            </button>
-                          </div>
+                          {marker?.video &&
+                            <div className="mt-2">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  setMarkerAberto(marker)
+                                }}
+                                className="mt-2 text-blue-600 text-sm hover:underline"
+                              >
+                                Ver mais
+                              </button>
+                            </div>}
                         </div>
                       )}
                     </div>

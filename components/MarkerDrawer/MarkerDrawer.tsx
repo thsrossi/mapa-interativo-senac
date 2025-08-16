@@ -11,7 +11,8 @@ type Props = {
         description?: string
         image?: string
         videoUrl?: string
-        category: string
+        category: string,
+        video?: string
     }
     open: boolean
     onOpenChange: (open: boolean) => void
@@ -29,17 +30,19 @@ export default function MarkerDrawer({ marker, open, onOpenChange }: Props) {
                             <X className="w-5 h-5 text-gray-500" />
                         </Dialog.Close>
                     </div>
-                    {(
-                        <div className="aspect-video w-full rounded-md overflow-hidden my-8">
-                            <iframe
-                                src={"https://www.youtube.com/embed/1gbN46xrbtw?rel=0&autoplay=0&mute=0&playsinline=1"}
-                                title={`Vídeo de ${marker.name}`}
-                                className="w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        </div>
-                    )}
+                    {marker?.video &&
+                        (
+                            <div className="aspect-video w-full rounded-md overflow-hidden my-8">
+                                <iframe
+                                    src={'https://www.youtube.com/embed/' + marker?.video}
+                                    title={`Vídeo de ${marker.name}`}
+                                    className="w-full h-full"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                        )
+                    }
 
                     {marker.description && (
                         <p className="text-sm text-gray-700 my-2">{marker.description}</p>
