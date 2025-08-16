@@ -29,7 +29,25 @@ export default function MarkerDrawer({ marker, open, onOpenChange }: Props) {
                             <X className="w-5 h-5 text-gray-500" />
                         </Dialog.Close>
                     </div>
+                    {(
+                        <div className="aspect-video w-full rounded-md overflow-hidden my-8">
+                            <iframe
+                                src={"https://www.youtube.com/embed/1gbN46xrbtw?rel=0&autoplay=0&mute=0&playsinline=1"}
+                                title={`Vídeo de ${marker.name}`}
+                                className="w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        </div>
+                    )}
 
+                    {marker.description && (
+                        <p className="text-sm text-gray-700 my-2">{marker.description}</p>
+                    )}
+
+                    <Badge variant="outline" className="text-xs my-4">
+                        {marker.category}
+                    </Badge>
                     {marker.image && (
                         <Image
                             src={`https://cdn.jsdelivr.net/gh/thsrossi/mapa-interativo-senac@main/assets/markersImages/${marker.image}`}
@@ -40,25 +58,7 @@ export default function MarkerDrawer({ marker, open, onOpenChange }: Props) {
                         />
                     )}
 
-                    {marker.description && (
-                        <p className="text-sm text-gray-700 mb-2">{marker.description}</p>
-                    )}
 
-                    <Badge variant="outline" className="text-xs mb-4">
-                        {marker.category}
-                    </Badge>
-
-                    {(
-                        <div className="aspect-video w-full rounded-md overflow-hidden">
-                            <iframe
-                                src={"https://www.youtube.com/embed/1gbN46xrbtw?rel=0&autoplay=0&mute=0&playsinline=1"}
-                                title={`Vídeo de ${marker.name}`}
-                                className="w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        </div>
-                    )}
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root>

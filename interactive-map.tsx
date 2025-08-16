@@ -84,9 +84,9 @@ export default function InteractiveMap() {
 
     const { zoomToElement } = transformComponentRef.current
 
-    const markerElement = document.getElementById(`marker-${marker.id}`)
-    if (markerElement && zoomToElement) {
-      zoomToElement(markerElement, isMobile ? 1.1 : 1.2, 200, "easeOut")
+    const fakeElement = document.getElementById(`marker-offset-${marker.id}`)
+    if (fakeElement && zoomToElement) {
+      zoomToElement(fakeElement, isMobile ? 1 : 1.2, 200, "easeOut")
     }
   }
 
@@ -164,7 +164,7 @@ export default function InteractiveMap() {
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
             <TransformComponent wrapperClass="max-w-screen max-h-screen" contentClass="w-full h-screen flex items-center justify-center">
-              <div className="relative inline-block z-20 py-16 m-30">
+              <div className="relative inline-block z-20 py-16 m-40">
                 <img
                   src={imagemMapa}
                   alt="Planta Baixa"
@@ -195,7 +195,16 @@ export default function InteractiveMap() {
                     // MOVA o mouse enter/leave pro container maior:
                     onMouseEnter={() => { if (!isMobile) setHoveredMarker(marker.id) }}
                     onMouseLeave={() => { if (!isMobile) { setHoveredMarker(null); setSelectedMarker(null) } }}
-                  >
+                  ><div
+                      id={`marker-offset-${marker.id}`}
+                      style={{
+                        position: 'absolute',
+                        left: '50%',
+                        top: '150px', // altura acima do marcador real, ajuste conforme necessário
+                        width: '1px',
+                        height: '1px',
+                      }}
+                    />
                     <div className="relative flex flex-col items-center z-10">
                       <div className={`w-6 h-6 rounded-full ${marker.color} border-2 border-white shadow-lg flex items-center justify-center`}>
                         {marker.category === 'Restrito' ? (
@@ -250,13 +259,11 @@ export default function InteractiveMap() {
           </TransformWrapper>
         </div>
       </div>
-      {markerAberto && (
-        <MarkerDrawer
-          marker={markerAberto}
-          open={!!markerAberto}
-          onOpenChange={(open) => !open && setMarkerAberto(null)}
-        />
-      )}
+      <MarkerDrawer
+        marker={markerAberto || {} as MapMarker} // Ou um objeto vazio, ou pode fazer MarkerDrawer tratar marker optional
+        open={!!markerAberto}
+        onOpenChange={(open) => !open && setMarkerAberto(null)}
+      />
     </TooltipProvider>
   )
 }
