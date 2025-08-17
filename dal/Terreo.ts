@@ -10,6 +10,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    video: 'CddHb4r-yRM'
   },
   {
     id: "2",
@@ -20,7 +21,8 @@ export const markersTerreo: MapMarker[] = [
     category: "Aulas Gastronomia",
     color: "bg-green-500",
     visible: true,
-    image: 'confeitaria.jpg'
+    image: 'confeitaria.jpg',
+    video: "CddHb4r-yRM"
   },
   {
     id: "3",
@@ -143,7 +145,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Biblioteca",
     color: "bg-indigo-600",
     visible: true,
-    image:'biblioteca.jpg'
+    image: 'biblioteca.jpg'
   },
   {
     id: "15",
