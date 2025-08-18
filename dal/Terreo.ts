@@ -22,7 +22,7 @@ export const markersTerreo: MapMarker[] = [
     color: "bg-green-500",
     visible: true,
     image: 'confeitaria.jpg',
-    video: "CddHb4r-yRM"
+    video: "CddHb4r-yRM?start=38&"
   },
   {
     id: "3",
@@ -44,7 +44,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Vestiário",
     color: "bg-orange-500",
     visible: true,
-    video: 's6EHCxZhZrE'
+    video: 's6EHCxZhZrE?start=40&'
   },
   {
     id: "5",
@@ -287,6 +287,6 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
-    video: 's6EHCxZhZrE'
+    video: 's6EHCxZhZrE?start=70&'
   },
 ]
