@@ -10,6 +10,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Informática",
         color: "bg-green-900",
         visible: true,
+        video: '-sxaMitmyCo?start=53&'
     },
     {
         id: "2",
@@ -20,6 +21,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: '-sxaMitmyCo?start=53&'
     },
     {
         id: "3",
@@ -30,16 +32,18 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Informática",
         color: "bg-green-900",
         visible: true,
+        video: '-sxaMitmyCo?start=63&'
     },
     {
         id: "4",
-        name: "Laboratórios Informática(21, 22 e 23)",
+        name: "Laboratórios Informática(20, 21 e 22)",
         description: "Um espaço equipado com computadores, destinado à aulas de informática - Sala 20, 21 e 22",
         x: 13.8,
         y: 65.13,
         category: "Aulas Informática",
         color: "bg-green-900",
         visible: true,
+        video: '-sxaMitmyCo?start=69&'
     },
     {
         id: "5",
@@ -50,6 +54,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: '-sxaMitmyCo?start=310&'
     },
     {
         id: "6",
@@ -70,6 +75,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Administrativo Senac",
         color: "bg-orange-900",
         visible: true,
+        video: '-sxaMitmyCo?start=19&'
     },
     {
         id: "8",
@@ -80,6 +86,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo'
     },
     {
         id: "9",
@@ -100,6 +107,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: '-sxaMitmyCo?start=310&'
     },
     {
         id: "11",
@@ -120,6 +128,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=275&'
     },
     {
         id: "13",
@@ -130,6 +139,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=270&'
     },
     {
         id: "14",
@@ -140,6 +150,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=265&'
     },
     {
         id: "15",
@@ -150,6 +161,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=250&'
     },
     {
         id: "16",
@@ -160,6 +172,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=245&'
     },
     {
         id: "18",
@@ -170,6 +183,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=245&'
     },
     {
         id: "19",
@@ -220,6 +234,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: '-sxaMitmyCo?start=195&'
     },
     {
         id: "24",
@@ -230,6 +245,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Jardim",
         color: "bg-emerald-300",
         visible: true,
+        video: '-sxaMitmyCo?start=41&'
     },
     {
         id: "25",
@@ -240,6 +256,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo'
     },
     {
         id: "26",
@@ -270,6 +287,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Auditório",
         color: "bg-cyan-500",
         visible: true,
+        video: '-sxaMitmyCo?start=128&'
     },
     {
         id: "29",
@@ -280,16 +298,19 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=98&'
     },
     {
         id: "30",
         name: "Ambiente de Treinamento para Competição – Serviço de restaurante",
-        description: "Espaço dedicado ao treino prático e simulações de provas, preparando os alunos para competições na área de serviços de restaurante.",
+        description: "Espaço dedicado ao treino prático e simulações de provas, preparando os alunos para competições na área de serviços de restaurante. Sala 25",
         x: 39.75,
         y: 70.63,
         category: "Competição",
         color: "bg-[#D4AF37]",
         visible: true,
+        video: '-sxaMitmyCo?start=117&'
+
     },
     {
         id: "31",
@@ -300,6 +321,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=128&'
     },
     {
         id: "32",
@@ -310,6 +332,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=142&'
     },
     {
         id: "33",
@@ -320,6 +343,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=142&'
     },
     {
         id: "34",
@@ -330,6 +354,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: '-sxaMitmyCo?start=155&'
     },
     {
         id: "35",
@@ -340,6 +365,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: '-sxaMitmyCo?start=166&'
     },
     {
         id: "36",
@@ -350,5 +376,6 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: '-sxaMitmyCo?start=180&'
     }
 ];
