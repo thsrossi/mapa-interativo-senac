@@ -41,6 +41,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Aulas Beleza",
         color: "bg-pink-400",
         visible: true,
+        video: 'FSPh2IPRa1Q'
     },
     {
         id: "5",
@@ -81,9 +82,10 @@ export const markersMezanino: MapMarker[] = [
             "Os alunos treinam técnicas de barismo e coquetelaria em um ambiente que simula estabelecimentos reais - Sala 11",
         x: 39.88,
         y: 42.38,
-        category: "Alimentação",
-        color: "bg-yellow-500",
+        category: "Aulas Gastronomia",
+        color: "bg-green-500",
         visible: true,
+        video: 'YtcO5gXS5NU'
     },
     {
         id: "9",
@@ -94,6 +96,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Sanitário",
         color: "bg-gray-500",
         visible: true,
+        video: 'YtcO5gXS5NU?start=120&'
     },
     {
         id: "10",
@@ -115,6 +118,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Competição",
         color: "bg-[#D4AF37]",
         visible: true,
+        video: 'YtcO5gXS5NU?start=127&'
     },
     {
         id: "12",
@@ -183,12 +187,13 @@ export const markersMezanino: MapMarker[] = [
         id: "18",
         name: "Cozinha Didática",
         description:
-            "Ambiente equipado para o ensino prático de técnicas culinárias, onde os alunos desenvolvem habilidades de preparo, higiene e apresentação de alimentos em condições reais de trabalho.",
+            "Ambiente equipado para o ensino prático de técnicas culinárias, onde os alunos desenvolvem habilidades de preparo, higiene e apresentação de alimentos em condições reais de trabalho. Sala 10",
         x: 32.83,
         y: 43.13,
-        category: "Alimentação",
-        color: "bg-yellow-500",
+        category: "Aulas Gastronomia",
+        color: "bg-green-500",
         visible: true,
+        video: 'KbFGfFGa0fs'
     },
     {
         id: "19",

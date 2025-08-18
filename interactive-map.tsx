@@ -163,8 +163,9 @@ export default function InteractiveMap() {
             doubleClick={{ mode: "zoomIn", step: 0.3 }}
             onPanning={(_, e) => handleMapTouchMove(e)}
           >
-            <TransformComponent wrapperClass="max-w-screen max-h-screen" contentClass="w-full h-screen flex items-center justify-center">
-              <div className="relative inline-block z-20 py-16 m-40">
+            <TransformComponent wrapperClass="max-w-screen max-h-screen" contentClass="w-full h-screen flex items-center justify-center" >
+              <div className="relative inline-block z-20 py-16 m-40"
+              >
                 <img
                   src={imagemMapa}
                   alt="Planta Baixa"
@@ -172,10 +173,7 @@ export default function InteractiveMap() {
                   draggable={false}
                   onClick={(e) => {
                     e.stopPropagation()
-                    const rect = e.currentTarget.getBoundingClientRect()
-                    const x = ((e.clientX - rect.left) / rect.width) * 100
-                    const y = ((e.clientY - rect.top) / rect.height) * 100
-                    console.log(`x: ${x.toFixed(2)}%, y: ${y.toFixed(2)}%`)
+
                   }}
                   onLoad={() => setImageLoaded(true)}
                 />
@@ -219,6 +217,7 @@ export default function InteractiveMap() {
 
                       {(hoveredMarker === marker.id || selectedMarker === marker.id) && (
                         <div
+                          ref={tooltipRef}
                           className={`absolute ${marker.name ? 'top-6' : 'top-6'} max-w-48 left-1/2 -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-2xl px-3 py-2 w-60 z-[999] pointer-events-auto`}
                         // REMOVE onMouseEnter e onMouseLeave do tooltip
                         >
