@@ -287,7 +287,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Auditório",
         color: "bg-cyan-500",
         visible: true,
-        video: '-sxaMitmyCo?start=128&'
+        video: 'AdBiwEL0yBU'
     },
     {
         id: "29",
