@@ -33,6 +33,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Capela",
     color: "bg-purple-500",
     visible: true,
+    video: 's6EHCxZhZrE'
   },
   {
     id: "4",
@@ -43,6 +44,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Vestiário",
     color: "bg-orange-500",
     visible: true,
+    video: 's6EHCxZhZrE'
   },
   {
     id: "5",
@@ -83,7 +85,8 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
-    image: 'recepcao.jpg'
+    image: 'recepcao.jpg',
+    video: 'CddHb4r-yRM'
   },
   {
     id: "9",
@@ -105,6 +108,8 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    video: 'RliquCgNMzY?start=120&'
+
   },
   {
     id: "11",
@@ -125,6 +130,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    video: 'RliquCgNMzY?start=16&'
   },
   {
     id: "13",
@@ -135,6 +141,7 @@ export const markersTerreo: MapMarker[] = [
     category: "Secretaria",
     color: "bg-orange-900",
     visible: true,
+    video: 'RliquCgNMzY?start=25&'
   },
   {
     id: "14",
@@ -145,7 +152,8 @@ export const markersTerreo: MapMarker[] = [
     category: "Biblioteca",
     color: "bg-indigo-600",
     visible: true,
-    image: 'biblioteca.jpg'
+    image: 'biblioteca.jpg',
+    video: 'RliquCgNMzY?start=65&'
   },
   {
     id: "15",
@@ -257,7 +265,8 @@ export const markersTerreo: MapMarker[] = [
     category: "Descanso",
     color: "bg-green-200",
     visible: true,
-    image: 'mesasCirculacao.jpeg'
+    image: 'mesasCirculacao.jpeg',
+    video: 'RliquCgNMzY?start=94&'
   },
   {
     id: "26",
@@ -278,5 +287,6 @@ export const markersTerreo: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
+    video: 's6EHCxZhZrE'
   },
 ]

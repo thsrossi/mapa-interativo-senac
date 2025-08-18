@@ -181,7 +181,7 @@ export const markersMezanino: MapMarker[] = [
     },
     {
         id: "18",
-        name: "Cozinha Didáica",
+        name: "Cozinha Didática",
         description:
             "Ambiente equipado para o ensino prático de técnicas culinárias, onde os alunos desenvolvem habilidades de preparo, higiene e apresentação de alimentos em condições reais de trabalho.",
         x: 32.83,
