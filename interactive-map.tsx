@@ -198,7 +198,7 @@ export default function InteractiveMap() {
                       style={{
                         position: 'absolute',
                         left: '50%',
-                        top: '150px', // altura acima do marcador real, ajuste conforme necessário
+                        top: '250px', // altura acima do marcador real, ajuste conforme necessário
                         width: '1px',
                         height: '1px',
                       }}

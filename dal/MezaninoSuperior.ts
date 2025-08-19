@@ -10,7 +10,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Informática",
         color: "bg-green-900",
         visible: true,
-        video: '-sxaMitmyCo?start=53&'
+        video: 'qxfWD0g9bS4'
     },
     {
         id: "2",
@@ -32,7 +32,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Aulas Informática",
         color: "bg-green-900",
         visible: true,
-        video: '-sxaMitmyCo?start=63&'
+        video: 'qxfWD0g9bS4'
     },
     {
         id: "4",

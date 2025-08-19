@@ -47,23 +47,25 @@ export const markersMezanino: MapMarker[] = [
         id: "5",
         name: "Recepção Podologia",
         description:
-            "Espaço acolhedor onde os clientes voluntários são recebidos e aguardam atendimento. Aqui, os alunos colocam em prática os conhecimentos adquiridos, sempre sob supervisão profissional, proporcionando cuidados especializados em saúde dos pés.",
+            "Espaço acolhedor onde os clientes voluntários são recebidos e aguardam atendimento. Sala 8",
         x: 12.05,
         y: 46.5,
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: 'JCwwIe-WW6Q'
     },
     {
         id: "6",
         name: "Laboratório Podologia",
         description:
-            "Ambiente equipado para a prática das técnicas podológicas, onde os alunos realizam atendimentos supervisionados, desenvolvendo habilidades em prevenção, diagnóstico e cuidados com a saúde dos pés.",
+            "Ambiente equipado para a prática das técnicas podológicas, onde os alunos realizam atendimentos supervisionados.",
         x: 7.05,
         y: 55.5,
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: 'JCwwIe-WW6Q?start=10&'
     },
     {
         id: "7",
@@ -107,6 +109,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Administrativo Senac",
         color: "bg-orange-900",
         visible: true,
+        video: 'ReaYoifm3rg'
     },
     {
         id: "11",
@@ -150,6 +153,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Aulas Moda",
         color: "bg-purple-400",
         visible: true,
+        video: 'AWEtaWN6sDM'
     },
     {
         id: "15",
@@ -161,6 +165,8 @@ export const markersMezanino: MapMarker[] = [
         category: "Aulas Moda",
         color: "bg-purple-400",
         visible: true,
+        video: 'AWEtaWN6sDM'
+
     },
     {
         id: "16",
@@ -172,6 +178,8 @@ export const markersMezanino: MapMarker[] = [
         category: "Aulas Moda",
         color: "bg-purple-400",
         visible: true,
+        video: 'AWEtaWN6sDM'
+
     },
     {
         id: "17",

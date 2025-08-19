@@ -11,7 +11,8 @@ export const markersL1: MapMarker[] = [
     category: "Alimentação",
     color: "bg-yellow-500",
     visible: true,
-    image: "restauranteEscola.jpg"
+    image: "restauranteEscola.jpg",
+    video: '2mPbAgkslUA'
   },
   {
     id: "2",
@@ -23,7 +24,7 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
-    
+
   },
   {
     id: "3",
@@ -35,6 +36,7 @@ export const markersL1: MapMarker[] = [
     category: "Aulas Gastronomia",
     color: "bg-green-500",
     visible: true,
+    video: '9CBS61r94pw'
   },
   {
     id: "4",
@@ -55,7 +57,7 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
-    image:"rampa1andar.jpg"
+    image: "rampa1andar.jpg"
   },
   {
     id: "6",
@@ -77,7 +79,8 @@ export const markersL1: MapMarker[] = [
     category: "Acesso",
     color: "bg-blue-500",
     visible: true,
-    image:'salaoEscola.jpg'
+    image: 'salaoEscola.jpg',
+    video: 'K4D7FM9rLz8'
   },
   {
     id: "8",
@@ -89,7 +92,8 @@ export const markersL1: MapMarker[] = [
     category: "Competição",
     color: "bg-[#D4AF37]",
     visible: true,
-    image:'competicaoBeleza.jpg'
+    image: 'competicaoBeleza.jpg',
+    video: 'ZukP99gvOcc'
   },
   {
     id: "9",
@@ -115,25 +119,27 @@ export const markersL1: MapMarker[] = [
     id: "11",
     name: "Cabeleireiro",
     description:
-      "Ambiente de atendimento real ao público, onde os alunos praticam técnicas de corte, coloração, penteado, maquiagem e outros cuidados estéticos, sempre sob supervisão profissional.",
+      "Ambiente de atendimento real ao público, onde os alunos praticam técnicas de cabeleireiro e estética, sempre sob supervisão profissional.",
     x: 63.61,
     y: 59.29,
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
-    image:'salaoPedagogico2.jpg'
+    image: 'salaoPedagogico2.jpg',
+    video: 'oSjVh410jbk'
   },
   {
     id: "12",
     name: "Cabeleireiro",
     description:
-      "Ambiente de atendimento real ao público, onde os alunos praticam técnicas de corte, coloração, penteado, maquiagem e outros cuidados estéticos, sempre sob supervisão profissional.",
+      "Ambiente de atendimento real ao público, onde os alunos praticam técnicas de cabeleireiro e estética, sempre sob supervisão profissional.",
     x: 75.53,
     y: 63.66,
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
-    image:"salaoPedagogico3.jpg"
+    image: "salaoPedagogico3.jpg",
+    video: 'oSjVh410jbk?start=38&'
   },
   {
     id: "13",
@@ -145,5 +151,6 @@ export const markersL1: MapMarker[] = [
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
+    video: 'oSjVh410jbk?start=19&'
   },
 ];
