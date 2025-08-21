@@ -121,7 +121,7 @@ export const markersMezanino: MapMarker[] = [
         category: "Competição",
         color: "bg-[#D4AF37]",
         visible: true,
-        video: 'YtcO5gXS5NU?start=127&'
+        video: '4zSYnCEO-A4'
     },
     {
         id: "12",

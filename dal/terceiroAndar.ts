@@ -44,6 +44,7 @@ export const markersL3: MapMarker[] = [
         category: "Aulas Beleza",
         color: "bg-pink-400",
         visible: true,
+        video: 'DkJiZGeINP0'
     },
     {
         id: "5",
@@ -54,6 +55,7 @@ export const markersL3: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'l-_UJlszLtc'
     },
     {
         id: "6",
@@ -67,13 +69,13 @@ export const markersL3: MapMarker[] = [
     },
     {
         id: "7",
-        name: "Ambiente de Treinamento para Competição – Saúde",
+        name: "Ambiente Pedagogico de UTI",
         description:
-            "Espaço dedicado ao treino prático e simulações de provas, preparando os alunos para competições na área de saúde - sala 306",
+            "Ambiente estruturado para o ensino e simulação de práticas intensivas, reproduzindo fielmente uma UTI real para capacitação de profissionais da saúde.",
         x: 48.88,
         y: 43.88,
-        category: "Competição",
-        color: "bg-[#D4AF37]",
+        category: "Aulas Saúde",
+        color: "bg-violet-500",
         visible: true,
     },
     {
@@ -138,6 +140,8 @@ export const markersL3: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'l-_UJlszLtc'
+
     },
     {
         id: "14",
@@ -148,15 +152,19 @@ export const markersL3: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'l-_UJlszLtc'
     },
     {
         id: "15",
-        name: "Vitrinismo",
-        description: "Espaço destinado ao desenvolvimento de projetos de ambientação e exposição visual de produtos - Sala 307",
+        name: "Ambiente de Treinamento para Competição – Saúde",
+        description:
+            "Espaço dedicado ao treino prático e simulações de provas, preparando os alunos para competições na área de saúde - sala 307",
         x: 57.27,
         y: 53,
-        category: "Vitrinismo",
-        color: "bg-stone-700",
+        category: "Competição",
+        color: "bg-[#D4AF37]",
         visible: true,
+        video: 'Cx8xCknBv7c'
+
     },
 ];

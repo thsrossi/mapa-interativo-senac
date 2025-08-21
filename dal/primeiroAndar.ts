@@ -5,7 +5,7 @@ export const markersL1: MapMarker[] = [
     id: "1",
     name: "Restaurante Escola",
     description:
-      "Ambiente pedagógico onde os alunos colocam em prática os conhecimentos em gastronomia e hospitalidade, atendendo o público com pratos elaborados e serviço de qualidade. Aberto à comunidade, oferece uma experiência gastronômica diferenciada em um espaço formativo.",
+      "Ambiente pedagógico onde os alunos colocam em prática os conhecimentos em gastronomia e hospitalidade, atendendo o público. Aberto à comunidade. ",
     x: 17.13,
     y: 34.64,
     category: "Alimentação",

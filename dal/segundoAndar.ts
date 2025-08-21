@@ -21,6 +21,7 @@ export const markersL2: MapMarker[] = [
         category: "Administrativo Senac",
         color: "bg-orange-900",
         visible: true,
+        video: 'cGhM7By-R4w'
     },
     {
         id: "3",
@@ -31,6 +32,8 @@ export const markersL2: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'cGhM7By-R4w'
+
     },
     {
         id: "4",
@@ -51,6 +54,8 @@ export const markersL2: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'cGhM7By-R4w'
+
     },
     {
         id: "6",
@@ -61,6 +66,8 @@ export const markersL2: MapMarker[] = [
         category: "Acesso",
         color: "bg-blue-500",
         visible: true,
+        video: 'cGhM7By-R4w'
+
     },
     {
         id: "7",
@@ -82,6 +89,7 @@ export const markersL2: MapMarker[] = [
         category: "Administrativo Senac",
         color: "bg-orange-900",
         visible: true,
+        video: 'zucVs5lFMUk?start=25&'
     },
     {
         id: "9",
@@ -103,5 +111,6 @@ export const markersL2: MapMarker[] = [
         category: "Administrativo Senac",
         color: "bg-orange-900",
         visible: true,
+        video: 'zucVs5lFMUk?start=55&'
     },
 ];
