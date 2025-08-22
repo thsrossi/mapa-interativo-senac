@@ -32,14 +32,17 @@ export default function MarkerDrawer({ marker, open, onOpenChange }: Props) {
                     </div>
                     {marker?.video &&
                         (
-                            <div className="aspect-video w-full rounded-md overflow-hidden my-8">
-                                <iframe
-                                src={'https://www.youtube.com/embed/' + marker?.video + (marker?.video.endsWith('&') ? 'rel=0' : '?rel=0')}
-                                    title={`Vídeo de ${marker.name}`}
-                                    className="w-full h-full"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
+                            <div className="w-full flex items-center justify-center rounded-md overflow-hidden my-8">
+                            <div className="w-full lg:w-1/2 aspect-video flex items-center justify-center rounded-xl overflow-hidden">
+
+                                    <iframe
+                                        src={'https://www.youtube.com/embed/' + marker?.video + (marker?.video.endsWith('&') ? 'rel=0' : '?rel=0')}
+                                        title={`Vídeo de ${marker.name}`}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                </div>
                             </div>
                         )
                     }
