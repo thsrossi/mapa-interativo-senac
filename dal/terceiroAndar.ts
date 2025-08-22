@@ -11,6 +11,7 @@ export const markersL3: MapMarker[] = [
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: 'oIgVgTWaS5w'
     },
     {
         id: "2",
@@ -22,6 +23,7 @@ export const markersL3: MapMarker[] = [
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: 'WJae6OGpnyw'
     },
     {
         id: "3",
@@ -33,6 +35,7 @@ export const markersL3: MapMarker[] = [
         category: "Aulas Beleza",
         color: "bg-pink-400",
         visible: true,
+        video: '2jEsop6P94Y'
     },
     {
         id: "4",
@@ -77,6 +80,7 @@ export const markersL3: MapMarker[] = [
         category: "Aulas Saúde",
         color: "bg-violet-500",
         visible: true,
+        video: 'gGmHJJoiYB8'
     },
     {
         id: "8",
@@ -88,6 +92,7 @@ export const markersL3: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: 'gGmHJJoiYB8?start=67&'
     },
     {
         id: "9",
@@ -99,16 +104,20 @@ export const markersL3: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: 'gGmHJJoiYB8?start=95&'
+
     },
     {
         id: "10",
-        name: "",
-        description: "Acesso restrito",
-        x: 81.63,
-        y: 55,
-        category: "Restrito",
-        color: "bg-red-500",
+        name: "Sala 310",
+        description:
+            "Ambiente Pedagógico convencional, destinado à aulas teóricas gerais",
+        x: 84.5,
+        y: 49.75,
+        category: "Ambiente Pedagógico",
+        color: "bg-gray-900",
         visible: true,
+        video: "gGmHJJoiYB8?start=107&"
     },
     {
         id: "11",
@@ -120,6 +129,7 @@ export const markersL3: MapMarker[] = [
         category: "Ambiente Pedagógico",
         color: "bg-gray-900",
         visible: true,
+        video: "gGmHJJoiYB8?start=120&"
     },
     {
         id: "12",

@@ -11,6 +11,7 @@ export const markersL4: MapMarker[] = [
     category: "Aulas Beleza",
     color: "bg-pink-400",
     visible: true,
+    video: 'nu2TyRK3VKo'
   },
   {
     id: "2",
@@ -64,6 +65,7 @@ export const markersL4: MapMarker[] = [
     category: "Competição",
     color: "bg-[#D4AF37]",
     visible: true,
+    video: 'GQoDWi-Kev4'
   },
   {
     id: "7",
@@ -160,5 +162,6 @@ export const markersL4: MapMarker[] = [
     category: "Massoterapia",
     color: "bg-emerald-600",
     visible: true,
+    video: 'nu2TyRK3VKo?start=68&'
   },
 ];

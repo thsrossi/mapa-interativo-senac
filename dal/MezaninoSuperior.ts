@@ -309,7 +309,7 @@ export const markersMezaninoSuperior: MapMarker[] = [
         category: "Competição",
         color: "bg-[#D4AF37]",
         visible: true,
-        video: '-sxaMitmyCo?start=117&'
+        video: 'OQMdb4S8b6Y'
 
     },
     {

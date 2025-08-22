@@ -39,6 +39,18 @@ export const markersL1: MapMarker[] = [
     video: '9CBS61r94pw'
   },
   {
+    id: "99",
+    name: "Ambiente de Treinamento para Competição – Gastronomia",
+    description:
+      "Espaço dedicado à preparação técnica dos alunos para competições na área de Gastronomia.",
+    x: 19,
+    y: 56.91,
+    category: "Competição",
+    color: "bg-[#D4AF37]",
+    visible: true,
+    video: 'IeEt_fy27X0'
+  },
+  {
     id: "4",
     name: "Escada",
     description: "Escada geral Ed. João Daud't",
